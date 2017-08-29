@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3F63F21-E064-4858-B845-DF4A96DCC902}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QBankApi</RootNamespace>
+    <AssemblyName>QBankApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="log4net">
+      <HintPath>packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="slf4net">
+      <HintPath>packages\slf4net.0.1.14.1\lib\net35\slf4net.dll</HintPath>
+    </Reference>
+    <Reference Include="slf4net.log4net">
+      <HintPath>packages\slf4net.log4net.0.1.32.1\lib\net35\slf4net.log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CachePolicy.cs" />
+    <Compile Include="Communication.cs" />
+    <Compile Include="Controller\AccountsController.cs" />
+    <Compile Include="Controller\CategoriesController.cs" />
+    <Compile Include="Controller\ControllerAbstract.cs" />
+    <Compile Include="Controller\DeploymentController.cs" />
+    <Compile Include="Controller\EventsController.cs" />
+    <Compile Include="Controller\FiltersController.cs" />
+    <Compile Include="Controller\FoldersController.cs" />
+    <Compile Include="Controller\MediaController.cs" />
+    <Compile Include="Controller\MoodboardsController.cs" />
+    <Compile Include="Controller\ObjecttypesController.cs" />
+    <Compile Include="Controller\PropertysetsController.cs" />
+    <Compile Include="Controller\SearchController.cs" />
+    <Compile Include="Controller\SocialmediaController.cs" />
+    <Compile Include="Controller\TemplatesController.cs" />
+    <Compile Include="Enums\CacheType.cs" />
+    <Compile Include="Helpers\CacheHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\UtilHelper.cs" />
+    <Compile Include="Model\AudioTemplate.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CategoryResponse.cs" />
+    <Compile Include="Model\ClientRequest.cs" />
+    <Compile Include="Model\Command.cs" />
+    <Compile Include="Model\Comment.cs" />
+    <Compile Include="Model\CommentResponse.cs" />
+    <Compile Include="Model\Credentials.cs" />
+    <Compile Include="Model\DateTimeRange.cs" />
+    <Compile Include="Model\DelayedRequest.cs" />
+    <Compile Include="Model\DeploymentFile.cs" />
+    <Compile Include="Model\DeploymentSite.cs" />
+    <Compile Include="Model\DeploymentSiteResponse.cs" />
+    <Compile Include="Model\DownloadItem.cs" />
+    <Compile Include="Model\ExtraData.cs" />
+    <Compile Include="Model\FilterItem.cs" />
+    <Compile Include="Model\Folder.cs" />
+    <Compile Include="Model\FolderParent.cs" />
+    <Compile Include="Model\FolderResponse.cs" />
+    <Compile Include="Model\Functionality.cs" />
+    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\ImageTemplate.cs" />
+    <Compile Include="Model\Media.cs" />
+    <Compile Include="Model\MediaResponse.cs" />
+    <Compile Include="Model\MediaUsage.cs" />
+    <Compile Include="Model\MediaUsageResponse.cs" />
+    <Compile Include="Model\MediaVersion.cs" />
+    <Compile Include="Model\MetaData.cs" />
+    <Compile Include="Model\MimeType.cs" />
+    <Compile Include="Model\Moodboard.cs" />
+    <Compile Include="Model\MoodboardResponse.cs" />
+    <Compile Include="Model\MoodboardTemplateResponse.cs" />
+    <Compile Include="Model\ObjectType.cs" />
+    <Compile Include="Model\Property.cs" />
+    <Compile Include="Model\PropertyCriteria.cs" />
+    <Compile Include="Model\PropertyRequest.cs" />
+    <Compile Include="Model\PropertyResponse.cs" />
+    <Compile Include="Model\PropertySet.cs" />
+    <Compile Include="Model\PropertyType.cs" />
+    <Compile Include="Model\Protocol.cs" />
+    <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\SavedSearch.cs" />
+    <Compile Include="Model\Search.cs" />
+    <Compile Include="Model\SearchResult.cs" />
+    <Compile Include="Model\SearchSort.cs" />
+    <Compile Include="Model\SlideStructure.cs" />
+    <Compile Include="Model\SlideTransition.cs" />
+    <Compile Include="Model\SocialMedia.cs" />
+    <Compile Include="Model\TokenResponse.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserAccessToken.cs" />
+    <Compile Include="Model\VideoTemplate.cs" />
+    <Compile Include="OAuth2Authenticator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QBankApi.cs" />
+    <Compile Include="Serializers\RestSharpJsonNetSerializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
