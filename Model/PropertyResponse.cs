@@ -1,6 +1,7 @@
 using RestSharp;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 
 namespace QBankApi.Model
@@ -45,6 +46,23 @@ namespace QBankApi.Model
         /// <summary>
         /// The value of the Property.
         /// </summary>
-        public string Value { get; set; }
+        public object Value { internal get; set; }
+
+
+        public T getValue<T>()
+        {
+            return (T) Value;
+        }
+
+        public List<T> getArrayProperty<T>()
+        {
+            var list = new List<T>();
+            var array = Value as JsonArray;
+            if (array != null)
+            {
+                list.AddRange(from Dictionary<string, object> value in array select (T) value["value"]);
+            }
+            return list;
+        }
     }
 }

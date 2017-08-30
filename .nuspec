@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <title>$title$</title>
+        <authors>QBNK Company AB</authors>
+        <owners>qbnk</owners>
+        <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+        <projectUrl>https://github.com/QBNK/qbank3api-dotnetwrapper</projectUrl>
+        <iconUrl>http://cloudstuff.se/qbank.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <releaseNotes>Alpha release of QBank API for .NET</releaseNotes>
+        <description>A .NET-Wrapper for QBank 3's API. Provides a simple way to communicate with QBank 3 from .NET.</description>
+        <copyright>Copyright ©2017 QBNK Company AB</copyright>
+        <tags>json qbank api</tags>
+        <dependencies>
+            <dependency id="log4net" version="2.0.0" />
+            <dependency id="Newtonsoft.Json" version="10.0.3" />
+            <dependency id="RestSharp" version="105.2.3" />
+        </dependencies>
+    </metadata>
+</package>
