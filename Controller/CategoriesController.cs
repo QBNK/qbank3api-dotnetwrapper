@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class CategoriesController : ControllerAbstract
@@ -24,7 +25,8 @@ namespace QBankApi.Controller
         ///
         /// Lists all categories that the current user has access to.
         /// </summary>
-        public List<CategoryResponse> ListCategories(CachePolicy cachePolicy = null)
+        public List<CategoryResponse> ListCategories(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/categories", Method.GET);
             request.Parameters.Clear();
@@ -39,7 +41,8 @@ namespace QBankApi.Controller
         /// Fetches a Category by the specified identifier.
         /// <param name="id">The Category identifier.</param>
         /// </summary>
-        public CategoryResponse RetrieveCategory(int id, CachePolicy cachePolicy = null)
+        public CategoryResponse RetrieveCategory(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/categories/{id}", Method.GET);
             request.Parameters.Clear();
@@ -52,7 +55,8 @@ namespace QBankApi.Controller
         /// Create a Category.
         /// <param name="category">A JSON encoded Category to create</param>
         /// </summary>
-        public CategoryResponse CreateCategory(Category category)
+        public CategoryResponse CreateCategory(
+            Category category)
         {
             var request = new RestRequest($"v1/categories", Method.POST);
             request.Parameters.Clear();
@@ -69,7 +73,8 @@ namespace QBankApi.Controller
         /// <param name="id">The Category identifier.</param>
         /// <param name="category">A JSON encoded Category representing the updates</param>
         /// </summary>
-        public CategoryResponse UpdateCategory(int id, Category category)
+        public CategoryResponse UpdateCategory(
+            int id, Category category)
         {
             var request = new RestRequest($"v1/categories/{id}", Method.POST);
             request.Parameters.Clear();
@@ -87,7 +92,8 @@ namespace QBankApi.Controller
         /// You can not delete a category that has Media attached to it.
         /// <param name="id">The Category identifier.</param>
         /// </summary>
-        public CategoryResponse RemoveCategory(int id)
+        public CategoryResponse RemoveCategory(
+            int id)
         {
             var request = new RestRequest($"v1/categories/{id}", Method.DELETE);
             request.Parameters.Clear();

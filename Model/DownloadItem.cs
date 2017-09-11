@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class DownloadItem : RestResponse
+    public class DownloadItem
     {
         /// <summary>
         /// Media ID

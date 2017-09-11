@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class SearchController : ControllerAbstract
@@ -22,7 +23,8 @@ namespace QBankApi.Controller
         /// <summary>
         ///
         /// </summary>
-        public object Metadata(CachePolicy cachePolicy = null)
+        public object Metadata(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/search/metadata", Method.GET);
             request.Parameters.Clear();
@@ -38,7 +40,8 @@ namespace QBankApi.Controller
         /// <param name="search">Search parameters</param>
         /// <param name="returnType">Whether to return object, mediaIds.</param>
         /// </summary>
-        public SearchResult Search(Search search, int returnType = 1, CachePolicy cachePolicy = null)
+        public SearchResult Search(
+            Search search, int returnType = 1, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/search", Method.POST);
             request.Parameters.Clear();
@@ -57,7 +60,8 @@ namespace QBankApi.Controller
         /// in QBank
         /// <param name="search">Search parameters</param>
         /// </summary>
-        public object Searchtotal(Search search)
+        public object Searchtotal(
+            Search search)
         {
             var request = new RestRequest($"v1/search/total", Method.POST);
             request.Parameters.Clear();

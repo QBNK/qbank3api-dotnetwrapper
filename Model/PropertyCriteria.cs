@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class PropertyCriteria : RestResponse
+    public class PropertyCriteria
     {
         /// <summary>
         /// The system name of the Property we filter on

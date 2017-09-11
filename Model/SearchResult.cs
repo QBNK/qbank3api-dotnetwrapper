@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class SearchResult : RestResponse
+    public class SearchResult
     {
         /// <summary>
         /// Number of hits per page in the SearchResult

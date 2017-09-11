@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class Functionality : RestResponse
+    public class Functionality
     {
         /// <summary>
         /// The Functionality identifier.

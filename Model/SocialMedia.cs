@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class SocialMedia : RestResponse
+    public class SocialMedia
     {
         /// <summary>
         /// The SocialMedia identifier.

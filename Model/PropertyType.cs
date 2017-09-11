@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class PropertyType : RestResponse
+    public class PropertyType
     {
         /// <summary>
         /// When the Property was created.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class MetaData : RestResponse
+    public class MetaData
     {
         /// <summary>
         /// The MetaData section name.
@@ -14,6 +14,6 @@ namespace QBankApi.Model
         /// <summary>
         /// The MetaData data as a key-value object.
         /// </summary>
-        public object Data { get; set; }
+        public Dictionary<string, string> Data { get; set; }
     }
 }

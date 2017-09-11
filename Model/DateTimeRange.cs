@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class DateTimeRange : RestResponse
+    public class DateTimeRange
     {
         /// <summary>
         /// Minimum date in this range, leave empty for none.

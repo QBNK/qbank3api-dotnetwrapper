@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class MimeType : RestResponse
+    public class MimeType
     {
         /// <summary>
         /// The MimeType identifier.

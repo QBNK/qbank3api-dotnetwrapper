@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class Category : RestResponse
+    public class Category
     {
         /// <summary>
         /// The ObjectType identifier Media belonging to this Category should have.

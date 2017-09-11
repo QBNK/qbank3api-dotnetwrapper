@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class Role : RestResponse
+    public class Role
     {
         /// <summary>
         /// The Role identifier.

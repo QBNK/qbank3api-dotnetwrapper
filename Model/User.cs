@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class User : RestResponse
+    public class User
     {
         /// <summary>
         /// The User identifier.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class Protocol : RestResponse
+    public class Protocol
     {
         /// <summary>
         /// The Protocol identifier.

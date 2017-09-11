@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class ObjecttypesController : ControllerAbstract
@@ -22,7 +23,8 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists all Object Types
         /// </summary>
-        public List<ObjectType> ListObjectTypes(CachePolicy cachePolicy = null)
+        public List<ObjectType> ListObjectTypes(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/objecttypes", Method.GET);
             request.Parameters.Clear();
@@ -37,7 +39,8 @@ namespace QBankApi.Controller
         /// Fetches an ObjectType by the specified identifier.
         /// <param name="id">The ObjectType identifier.</param>
         /// </summary>
-        public ObjectType RetrieveObjectType(int id, CachePolicy cachePolicy = null)
+        public ObjectType RetrieveObjectType(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/objecttypes/{id}", Method.GET);
             request.Parameters.Clear();

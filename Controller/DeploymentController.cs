@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class DeploymentController : ControllerAbstract
@@ -22,7 +23,8 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists all Protocols.
         /// </summary>
-        public List<Protocol> ListProtocols(CachePolicy cachePolicy = null)
+        public List<Protocol> ListProtocols(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/deployment/protocols", Method.GET);
             request.Parameters.Clear();
@@ -35,7 +37,8 @@ namespace QBankApi.Controller
         /// Fetches a specific Protocol.
         /// <param name="id">The Protocol identifier..</param>
         /// </summary>
-        public Protocol RetrieveProtocol(int id, CachePolicy cachePolicy = null)
+        public Protocol RetrieveProtocol(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/deployment/protocols/{id}", Method.GET);
             request.Parameters.Clear();
@@ -49,7 +52,8 @@ namespace QBankApi.Controller
         ///
         /// Lists all DeploymentSites the current User has access to.
         /// </summary>
-        public List<DeploymentSiteResponse> ListSites(CachePolicy cachePolicy = null)
+        public List<DeploymentSiteResponse> ListSites(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/deployment/sites", Method.GET);
             request.Parameters.Clear();
@@ -62,7 +66,8 @@ namespace QBankApi.Controller
         /// Fetches a specific DeploymentSite.
         /// <param name="id">The DeploymentSite identifier..</param>
         /// </summary>
-        public DeploymentSiteResponse RetrieveSite(int id, CachePolicy cachePolicy = null)
+        public DeploymentSiteResponse RetrieveSite(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/deployment/sites/{id}", Method.GET);
             request.Parameters.Clear();
@@ -75,7 +80,8 @@ namespace QBankApi.Controller
         /// Create a DeploymentSite.
         /// <param name="deploymentSite">A JSON encoded DeploymentSite to create</param>
         /// </summary>
-        public DeploymentSiteResponse CreateSite(DeploymentSite deploymentSite)
+        public DeploymentSiteResponse CreateSite(
+            DeploymentSite deploymentSite)
         {
             var request = new RestRequest($"v1/deployment", Method.POST);
             request.Parameters.Clear();
@@ -92,7 +98,8 @@ namespace QBankApi.Controller
         /// <param name="id">The DeploymentSite identifier.</param>
         /// <param name="deploymentSite">A JSON encoded DeploymentSite representing the updates</param>
         /// </summary>
-        public DeploymentSiteResponse UpdateSite(int id, DeploymentSite deploymentSite)
+        public DeploymentSiteResponse UpdateSite(
+            int id, DeploymentSite deploymentSite)
         {
             var request = new RestRequest($"v1/deployment/{id}", Method.POST);
             request.Parameters.Clear();
@@ -111,7 +118,8 @@ namespace QBankApi.Controller
         /// <param name="id">DeploymentSite to deploy to.</param>
         /// <param name="mediaIds">An array of int values.</param>
         /// </summary>
-        public Dictionary<string, object> AddMediaToDeploymentSite(int id, List<int> mediaIds)
+        public Dictionary<string, object> AddMediaToDeploymentSite(
+            int id, List<int> mediaIds)
         {
             var request = new RestRequest($"v1/deployment/{id}/media", Method.POST);
             request.Parameters.Clear();
@@ -129,7 +137,8 @@ namespace QBankApi.Controller
         /// You can not delete a DeploymentSite while there are still media deployed there!
         /// <param name="id">The DeploymentSite identifier.</param>
         /// </summary>
-        public DeploymentSiteResponse RemoveSite(int id)
+        public DeploymentSiteResponse RemoveSite(
+            int id)
         {
             var request = new RestRequest($"v1/deployment/{id}", Method.DELETE);
             request.Parameters.Clear();
@@ -145,7 +154,8 @@ namespace QBankApi.Controller
         /// <param name="id">DeploymentSite to undeploy from.</param>
         /// <param name="mediaIds">A comma separated string of media ids we should undeploy.</param>
         /// </summary>
-        public Dictionary<string, object> RemoveMediaFromDeploymentSite(int id, string mediaIds)
+        public Dictionary<string, object> RemoveMediaFromDeploymentSite(
+            int id, string mediaIds)
         {
             var request = new RestRequest($"v1/deployment/{id}/media", Method.DELETE);
             request.Parameters.Clear();

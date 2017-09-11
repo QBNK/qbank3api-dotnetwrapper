@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class FolderParent : RestResponse
+    public class FolderParent
     {
         /// <summary>
         /// The Folder identifier.

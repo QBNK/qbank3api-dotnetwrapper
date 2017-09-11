@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class Group : RestResponse
+    public class Group
     {
         /// <summary>
         /// The Group identifier.

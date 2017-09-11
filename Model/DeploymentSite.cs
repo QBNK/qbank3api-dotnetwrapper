@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class DeploymentSite : RestResponse
+    public class DeploymentSite
     {
         /// <summary>
         /// The human readable description of the DeploymentSite.

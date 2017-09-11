@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class SearchSort : RestResponse
+    public class SearchSort
     {
         /// <summary>
         /// Field to sort by

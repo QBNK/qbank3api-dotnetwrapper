@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace QBankApi.Model
 {
-    public class Comment : RestResponse
+    public class Comment
     {
         /// <summary>
         /// Object that this comment is made on
