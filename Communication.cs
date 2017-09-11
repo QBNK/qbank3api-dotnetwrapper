@@ -5,24 +5,24 @@ namespace QBankApi
 {
     public abstract class Communication
     {
-        readonly RestClient _client;
+	    public RestClient Client { get; }
 
-        internal Communication(string apiAddress, OAuth2Authenticator authenticator)
+        protected Communication(string apiAddress, OAuth2Authenticator authenticator)
         {
             if (!string.IsNullOrWhiteSpace(apiAddress))
             {
-                _client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
+				Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
             }
         }
 
-        internal T Execute<T>(RestRequest request) where T : new()
+        public T Execute<T>(RestRequest request) where T : new()
         {
-            if (_client == null)
+            if (Client == null)
             {
                 return default(T);
             }
 
-            var response = _client.Execute<T>(request);
+            var response = Client.Execute<T>(request);
 
             if (response.ErrorException != null)
             {
@@ -33,6 +33,6 @@ namespace QBankApi
             return response.Data;
         }
 
-        internal OAuth2Authenticator OAuth2Authenticator => _client?.Authenticator as OAuth2Authenticator;
+        protected OAuth2Authenticator OAuth2Authenticator => Client?.Authenticator as OAuth2Authenticator;
     }
 }

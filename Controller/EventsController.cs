@@ -11,22 +11,17 @@ namespace QBankApi.Controller
 {
     public class EventsController : ControllerAbstract
     {
-        public EventsController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public EventsController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// Track a Media custom event
-        /// <param name="sessionId">The session id to log the event on</param>
-        /// <param name="mediaId">The ID of the media in the event</param>
-        /// <param name="eventName">The event</param>
-        /// </summary>
-        public object Custom(
+		public EventsController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+
+		/// <summary>
+		/// Track a Media custom event
+		/// <param name="sessionId">The session id to log the event on</param>
+		/// <param name="mediaId">The ID of the media in the event</param>
+		/// <param name="eventName">The event</param>
+		/// </summary>
+		public object Custom(
             int sessionId, int mediaId, string eventName)
         {
             var request = new RestRequest($"v1/events/custom", Method.POST);

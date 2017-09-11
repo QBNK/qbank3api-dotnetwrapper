@@ -11,19 +11,14 @@ namespace QBankApi.Controller
 {
     public class SearchController : ControllerAbstract
     {
-        public SearchController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public SearchController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        ///
-        /// </summary>
-        public object Metadata(
+		public SearchController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+
+		/// <summary>
+		///
+		/// </summary>
+		public object Metadata(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/search/metadata", Method.GET);

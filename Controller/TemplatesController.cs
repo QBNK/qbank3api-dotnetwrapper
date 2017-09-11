@@ -11,21 +11,16 @@ namespace QBankApi.Controller
 {
     public class TemplatesController : ControllerAbstract
     {
-        public TemplatesController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public TemplatesController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// List audio templates available.
-        ///
-        /// List all non-deleted audio templates.
-        /// </summary>
-        public List<AudioTemplate> ListAudioTemplates(
+		public TemplatesController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+
+		/// <summary>
+		/// List audio templates available.
+		///
+		/// List all non-deleted audio templates.
+		/// </summary>
+		public List<AudioTemplate> ListAudioTemplates(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/templates/audio", Method.GET);

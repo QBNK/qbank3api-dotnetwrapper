@@ -11,22 +11,17 @@ namespace QBankApi.Controller
 {
     public class AccountsController : ControllerAbstract
     {
-        public AccountsController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public AccountsController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// Lists Functionalities available
-        ///
-        /// Lists all Functionalities available
-        /// <param name="includeDeleted">Indicates if we should include removed Functionalities in the result.</param>
-        /// </summary>
-        public List<Functionality> ListFunctionalities(
+		public AccountsController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+ 
+		/// <summary>
+		/// Lists Functionalities available
+		///
+		/// Lists all Functionalities available
+		/// <param name="includeDeleted">Indicates if we should include removed Functionalities in the result.</param>
+		/// </summary>
+		public List<Functionality> ListFunctionalities(
             bool includeDeleted = false, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/accounts/functionalities", Method.GET);

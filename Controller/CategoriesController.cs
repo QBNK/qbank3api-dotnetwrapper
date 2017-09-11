@@ -11,21 +11,16 @@ namespace QBankApi.Controller
 {
     public class CategoriesController : ControllerAbstract
     {
-        public CategoriesController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public CategoriesController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// Lists all Categories
-        ///
-        /// Lists all categories that the current user has access to.
-        /// </summary>
-        public List<CategoryResponse> ListCategories(
+		public CategoriesController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+
+		/// <summary>
+		/// Lists all Categories
+		///
+		/// Lists all categories that the current user has access to.
+		/// </summary>
+		public List<CategoryResponse> ListCategories(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/categories", Method.GET);
