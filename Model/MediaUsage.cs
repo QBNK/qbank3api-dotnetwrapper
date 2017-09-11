@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class MediaUsage : RestResponse
+    public class MediaUsage
     {
         /// <summary>
         ///

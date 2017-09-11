@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class SlideStructure : RestResponse
+    public class SlideStructure
     {
         /// <summary>
         /// Media that contains the slide

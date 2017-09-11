@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class Command : RestResponse
+    public class Command
     {
         /// <summary>
         /// The name of the command

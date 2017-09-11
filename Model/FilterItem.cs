@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class FilterItem : RestResponse
+    public class FilterItem
     {
         /// <summary>
         /// ID of the Filter (only applicable if Category or Folder FilterItem)
@@ -19,7 +19,7 @@ namespace QBankApi.Model
         /// <summary>
         /// An array of mediaIds that are tagged with this title
         /// </summary>
-        public List<string> MediaIds { get; set; }
+        public List<int> MediaIds { get; set; }
 
         /// <summary>
         ///

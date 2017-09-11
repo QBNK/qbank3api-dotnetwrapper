@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class FoldersController : ControllerAbstract
@@ -28,8 +29,9 @@ namespace QBankApi.Controller
         /// <param name="includeProperties">Whether to return the properties for each folder..</param>
         /// <param name="includeObjectCounts">Whether to return the number of objects each folder contains..</param>
         /// </summary>
-        public List<FolderResponse> ListFolders(int root = 0, int depth = 0, bool includeProperties = true,
-            bool includeObjectCounts = false, CachePolicy cachePolicy = null)
+        public List<FolderResponse> ListFolders(
+            int root = 0, int depth = 0, bool includeProperties = true, bool includeObjectCounts = false,
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/folders", Method.GET);
             request.Parameters.Clear();
@@ -51,8 +53,9 @@ namespace QBankApi.Controller
         /// <param name="includeProperties">Whether ti return the properties for each folder..</param>
         /// <param name="includeObjectCounts">Whether to return the number of objects each folder contains..</param>
         /// </summary>
-        public FolderResponse RetrieveFolder(int id, int depth = 0, bool includeProperties = true,
-            bool includeObjectCounts = false, CachePolicy cachePolicy = null)
+        public FolderResponse RetrieveFolder(
+            int id, int depth = 0, bool includeProperties = true, bool includeObjectCounts = false,
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/folders/{id}", Method.GET);
             request.Parameters.Clear();
@@ -70,7 +73,8 @@ namespace QBankApi.Controller
         /// Lists all parent Folders from the specified to the absolute root, with distances.
         /// <param name="id">The Folder identifier.</param>
         /// </summary>
-        public List<FolderParent> RetrieveParents(int id, CachePolicy cachePolicy = null)
+        public List<FolderParent> RetrieveParents(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/folders/{id}/parents", Method.GET);
             request.Parameters.Clear();
@@ -85,7 +89,8 @@ namespace QBankApi.Controller
         /// <param name="parentId">An optional parent folder ID. Will otherwise be created in the root level. Note that root level creation requires additional access!.</param>
         /// <param name="inheritAccess">Decides whether this Folder will inherit access from its parent folder</param>
         /// </summary>
-        public FolderResponse CreateFolder(Folder folder, int parentId = 0, bool inheritAccess = false)
+        public FolderResponse CreateFolder(
+            Folder folder, int parentId = 0, bool inheritAccess = false)
         {
             var request = new RestRequest($"v1/folders", Method.POST);
             request.Parameters.Clear();
@@ -105,7 +110,8 @@ namespace QBankApi.Controller
         /// <param name="folderId">Folder to add media to.</param>
         /// <param name="mediaIds">An array of int values.</param>
         /// </summary>
-        public Dictionary<string, object> AddMediaToFolder(int folderId, List<int> mediaIds)
+        public Dictionary<string, object> AddMediaToFolder(
+            int folderId, List<int> mediaIds)
         {
             var request = new RestRequest($"v1/folders/{folderId}/media", Method.POST);
             request.Parameters.Clear();
@@ -124,7 +130,8 @@ namespace QBankApi.Controller
         /// <param name="id">The Folder identifier.</param>
         /// <param name="folder">A JSON encoded Folder representing the updates</param>
         /// </summary>
-        public FolderResponse UpdateFolder(int id, Folder folder)
+        public FolderResponse UpdateFolder(
+            int id, Folder folder)
         {
             var request = new RestRequest($"v1/folders/{id}", Method.POST);
             request.Parameters.Clear();
@@ -141,7 +148,8 @@ namespace QBankApi.Controller
         /// <param name="folderId">Folder to remove media from.</param>
         /// <param name="mediaId">Media to remove from specified folder.</param>
         /// </summary>
-        public Dictionary<string, object> RemoveMediaFromFolder(int folderId, int mediaId)
+        public Dictionary<string, object> RemoveMediaFromFolder(
+            int folderId, int mediaId)
         {
             var request = new RestRequest($"v1/folders/{folderId}/media/{mediaId}", Method.DELETE);
             request.Parameters.Clear();
@@ -156,7 +164,8 @@ namespace QBankApi.Controller
         /// Delete a Folder and all subfolders. Will NOT delete Media attached to the Folder.
         /// <param name="id">The Folder identifier.</param>
         /// </summary>
-        public FolderResponse RemoveFolder(int id)
+        public FolderResponse RemoveFolder(
+            int id)
         {
             var request = new RestRequest($"v1/folders/{id}", Method.DELETE);
             request.Parameters.Clear();

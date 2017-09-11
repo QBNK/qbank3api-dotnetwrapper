@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class AudioTemplate : RestResponse
+    public class AudioTemplate
     {
         /// <summary>
         /// The Audio Template identifier

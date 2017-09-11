@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class MediaVersion : RestResponse
+    public class MediaVersion
     {
         /// <summary>
         /// The Media identifier.

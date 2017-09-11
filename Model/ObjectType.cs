@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class ObjectType : RestResponse
+    public class ObjectType
     {
         /// <summary>
         /// The name of the ObjectType

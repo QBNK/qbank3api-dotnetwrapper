@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class VideoTemplate : RestResponse
+    public class VideoTemplate
     {
         /// <summary>
         /// The Video Template identifier

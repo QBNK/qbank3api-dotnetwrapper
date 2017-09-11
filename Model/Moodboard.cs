@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class Moodboard : RestResponse
+    public class Moodboard
     {
         /// <summary>
         /// The pincode used to access this Moodboard.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class MoodboardTemplateResponse : RestResponse
+    public class MoodboardTemplateResponse
     {
         /// <summary>
         /// The template identifier.

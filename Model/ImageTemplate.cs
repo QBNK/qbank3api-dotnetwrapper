@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class ImageTemplate : RestResponse
+    public class ImageTemplate
     {
         /// <summary>
         /// The Image Template identifier

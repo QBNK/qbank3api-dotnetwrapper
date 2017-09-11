@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class DeploymentFile : RestResponse
+    public class DeploymentFile
     {
         /// <summary>
         /// The identifier of the DeploymentSite this file is deployed to.

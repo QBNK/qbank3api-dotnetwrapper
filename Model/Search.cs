@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class Search : RestResponse
+    public class Search
     {
         /// <summary>
         /// Starting offset of the search

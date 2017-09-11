@@ -75,8 +75,6 @@ namespace QBankApi.Controller
                 return null;
             }
 
-            //OAuth2Authenticator.Authenticate(Client, request);
-
             Console.WriteLine($"{request.Resource}{parameters}{OAuth2Authenticator.Token?.AccessToken}");
             var md5Parameters =
                 UtilHelper.GetMd5Hash($"{request.Resource}{parameters}{OAuth2Authenticator.Token?.AccessToken}");

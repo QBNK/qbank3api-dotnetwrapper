@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class PropertysetsController : ControllerAbstract
@@ -22,7 +23,8 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists all PropertySets
         /// </summary>
-        public List<PropertySet> ListPropertySets(CachePolicy cachePolicy = null)
+        public List<PropertySet> ListPropertySets(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/propertysets", Method.GET);
             request.Parameters.Clear();
@@ -34,7 +36,8 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists all PropertyTypes in QBank
         /// </summary>
-        public List<PropertyType> ListPropertyTypes(CachePolicy cachePolicy = null)
+        public List<PropertyType> ListPropertyTypes(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/propertysets/propertytypes", Method.GET);
             request.Parameters.Clear();

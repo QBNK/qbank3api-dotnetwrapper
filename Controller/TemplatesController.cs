@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class TemplatesController : ControllerAbstract
@@ -24,7 +25,8 @@ namespace QBankApi.Controller
         ///
         /// List all non-deleted audio templates.
         /// </summary>
-        public List<AudioTemplate> ListAudioTemplates(CachePolicy cachePolicy = null)
+        public List<AudioTemplate> ListAudioTemplates(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/templates/audio", Method.GET);
             request.Parameters.Clear();
@@ -39,7 +41,8 @@ namespace QBankApi.Controller
         /// Fetches a Audio Template by the specified identifier.
         /// <param name="id">The audio templates identifier..</param>
         /// </summary>
-        public AudioTemplate RetrieveAudioTemplate(int id, CachePolicy cachePolicy = null)
+        public AudioTemplate RetrieveAudioTemplate(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/templates/audiotemplate", Method.GET);
             request.Parameters.Clear();
@@ -51,7 +54,8 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists Image Templates available
         /// </summary>
-        public List<ImageTemplate> ListImageTemplates(CachePolicy cachePolicy = null)
+        public List<ImageTemplate> ListImageTemplates(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/templates/images", Method.GET);
             request.Parameters.Clear();
@@ -66,7 +70,8 @@ namespace QBankApi.Controller
         /// Fetches a Image Template by the specified identifier.
         /// <param name="id">The Image Template identifier.</param>
         /// </summary>
-        public ImageTemplate RetrieveImageTemplate(int id, CachePolicy cachePolicy = null)
+        public ImageTemplate RetrieveImageTemplate(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/templates/images/{id}", Method.GET);
             request.Parameters.Clear();
@@ -78,7 +83,8 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists Video Templates available
         /// </summary>
-        public List<VideoTemplate> ListVideoTemplates(CachePolicy cachePolicy = null)
+        public List<VideoTemplate> ListVideoTemplates(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/templates/videos", Method.GET);
             request.Parameters.Clear();
@@ -93,7 +99,8 @@ namespace QBankApi.Controller
         /// Fetches a Video Template by the specified identifier.
         /// <param name="id">The Video Template identifier.</param>
         /// </summary>
-        public VideoTemplate RetrieveVideoTemplate(int id, CachePolicy cachePolicy = null)
+        public VideoTemplate RetrieveVideoTemplate(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/templates/videos/{id}", Method.GET);
             request.Parameters.Clear();

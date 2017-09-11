@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace QBankApi.Model
 {
-    public class PropertyResponse : RestResponse
+    public class PropertyResponse
     {
         /// <summary>
         /// When the Property was created.
@@ -51,6 +51,11 @@ namespace QBankApi.Model
 
         public T getValue<T>()
         {
+            if (Type.GetTypeCode(typeof(T)) == TypeCode.DateTime)
+            {
+                return (T) (object) Convert.ToDateTime(Value);
+            }
+
             return (T) Value;
         }
 

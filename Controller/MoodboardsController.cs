@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class MoodboardsController : ControllerAbstract
@@ -24,7 +25,8 @@ namespace QBankApi.Controller
         ///
         /// that the current user has access to.
         /// </summary>
-        public List<MoodboardResponse> ListMoodboards(CachePolicy cachePolicy = null)
+        public List<MoodboardResponse> ListMoodboards(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/moodboards", Method.GET);
             request.Parameters.Clear();
@@ -39,7 +41,8 @@ namespace QBankApi.Controller
         /// Fetches a Moodboard by the specified identifier.
         /// <param name="id">The Moodboard identifier.</param>
         /// </summary>
-        public MoodboardResponse RetrieveMoodboard(int id, CachePolicy cachePolicy = null)
+        public MoodboardResponse RetrieveMoodboard(
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/moodboards/{id}", Method.GET);
             request.Parameters.Clear();
@@ -53,7 +56,8 @@ namespace QBankApi.Controller
         ///
         /// Lists all Moodboard templates that the user has access to.
         /// </summary>
-        public List<MoodboardTemplateResponse> ListTemplates(CachePolicy cachePolicy = null)
+        public List<MoodboardTemplateResponse> ListTemplates(
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/moodboards/templates", Method.GET);
             request.Parameters.Clear();
@@ -68,7 +72,8 @@ namespace QBankApi.Controller
         /// Fetches a specific Moodboard template by id.
         /// <param name="templateId"></param>
         /// </summary>
-        public MoodboardTemplateResponse RetrieveTemplate(int templateId, CachePolicy cachePolicy = null)
+        public MoodboardTemplateResponse RetrieveTemplate(
+            int templateId, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/moodboards/templates/{templateId}", Method.GET);
             request.Parameters.Clear();
@@ -83,7 +88,8 @@ namespace QBankApi.Controller
         /// Create a Moodboard
         /// <param name="moodboard">A JSON encoded Moodboard to create</param>
         /// </summary>
-        public MoodboardResponse CreateMoodboard(Moodboard moodboard)
+        public MoodboardResponse CreateMoodboard(
+            Moodboard moodboard)
         {
             var request = new RestRequest($"v1/moodboards", Method.POST);
             request.Parameters.Clear();
@@ -102,7 +108,8 @@ namespace QBankApi.Controller
         /// <param name="id">The Moodboard identifier.</param>
         /// <param name="moodboard">A JSON encoded Moodboard representing the updates</param>
         /// </summary>
-        public MoodboardResponse UpdateMoodboard(int id, Moodboard moodboard)
+        public MoodboardResponse UpdateMoodboard(
+            int id, Moodboard moodboard)
         {
             var request = new RestRequest($"v1/moodboards/{id}", Method.POST);
             request.Parameters.Clear();
@@ -119,7 +126,8 @@ namespace QBankApi.Controller
         /// <param name="moodboardId">Moodboard ID to add media to.</param>
         /// <param name="mediaIds">An array of int values.</param>
         /// </summary>
-        public Dictionary<string, object> AddMediaToMoodboard(int moodboardId, List<int> mediaIds)
+        public Dictionary<string, object> AddMediaToMoodboard(
+            int moodboardId, List<int> mediaIds)
         {
             var request = new RestRequest($"v1/moodboards/{moodboardId}/media", Method.POST);
             request.Parameters.Clear();
@@ -137,7 +145,8 @@ namespace QBankApi.Controller
         /// Will NOT delete Media attached to the Moodboard.
         /// <param name="id">The Moodboard identifier.</param>
         /// </summary>
-        public MoodboardResponse RemoveMoodboard(int id)
+        public MoodboardResponse RemoveMoodboard(
+            int id)
         {
             var request = new RestRequest($"v1/moodboards/{id}", Method.DELETE);
             request.Parameters.Clear();
@@ -151,7 +160,8 @@ namespace QBankApi.Controller
         /// <param name="moodboardId">Moodboard ID to remove media from.</param>
         /// <param name="mediaId">Media ID to remove from specified folder.</param>
         /// </summary>
-        public Dictionary<string, object> RemoveMediaFromMoodboard(int moodboardId, int mediaId)
+        public Dictionary<string, object> RemoveMediaFromMoodboard(
+            int moodboardId, int mediaId)
         {
             var request = new RestRequest($"v1/moodboards/{moodboardId}/media/{mediaId}", Method.DELETE);
             request.Parameters.Clear();

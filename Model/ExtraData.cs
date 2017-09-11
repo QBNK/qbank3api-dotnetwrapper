@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class ExtraData : RestResponse
+    public class ExtraData
     {
         /// <summary>
         /// The ExtraData identifier.

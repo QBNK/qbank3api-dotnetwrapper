@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class SlideTransition : RestResponse
+    public class SlideTransition
     {
         /// <summary>
         /// The transition to use

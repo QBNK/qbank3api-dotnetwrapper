@@ -6,6 +6,7 @@ using QBankApi.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace QBankApi.Controller
 {
     public class FiltersController : ControllerAbstract
@@ -27,8 +28,9 @@ namespace QBankApi.Controller
         /// <param name="deploymentSiteIds">Comma separated string of deploymentSiteIds we should fetch mediaIds for.</param>
         /// <param name="ignoreGrouping">Whether to include grouped media or not.</param>
         /// </summary>
-        public List<FilterItem> Categories(string categoryIds, string deploymentSiteIds = null,
-            bool ignoreGrouping = false, CachePolicy cachePolicy = null)
+        public List<FilterItem> Categories(
+            string categoryIds, string deploymentSiteIds = null, bool ignoreGrouping = false,
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/filters/categories/{categoryIds}", Method.GET);
             request.Parameters.Clear();
@@ -48,8 +50,9 @@ namespace QBankApi.Controller
         /// <param name="deploymentSiteIds">Comma separated string of deploymentSiteIds we should fetch mediaIds for.</param>
         /// <param name="ignoreGrouping">Whether to include grouped media or not.</param>
         /// </summary>
-        public List<FilterItem> Folder(int parentFolderId, string categoryIds = null, string deploymentSiteIds = null,
-            bool ignoreGrouping = false, CachePolicy cachePolicy = null)
+        public List<FilterItem> Folder(
+            int parentFolderId, string categoryIds = null, string deploymentSiteIds = null, bool ignoreGrouping = false,
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/filters/folder/{parentFolderId}", Method.GET);
             request.Parameters.Clear();
@@ -70,8 +73,9 @@ namespace QBankApi.Controller
         /// <param name="mode">The method (AND|OR) to filter words by.</param>
         /// <param name="ignoreGrouping">Whether to include grouped media or not.</param>
         /// </summary>
-        public List<FilterItem> Freetext(string freetext, string deploymentSiteIds = null, string mode = "OR",
-            bool ignoreGrouping = false, CachePolicy cachePolicy = null)
+        public List<FilterItem> Freetext(
+            string freetext, string deploymentSiteIds = null, string mode = "OR", bool ignoreGrouping = false,
+            CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/filters/freetext/{freetext}", Method.GET);
             request.Parameters.Clear();
@@ -94,9 +98,9 @@ namespace QBankApi.Controller
         /// <param name="isHierarchical">Whether to include grouped media or not.</param>
         /// <param name="ignoreGrouping"></param>
         /// </summary>
-        public List<FilterItem> Property(string systemName, bool preloadNames = false, string categoryIds = null,
-            string deploymentSiteIds = null, bool isHierarchical = false, bool ignoreGrouping = false,
-            CachePolicy cachePolicy = null)
+        public List<FilterItem> Property(
+            string systemName, bool preloadNames = false, string categoryIds = null, string deploymentSiteIds = null,
+            bool isHierarchical = false, bool ignoreGrouping = false, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/filters/property/{systemName}", Method.GET);
             request.Parameters.Clear();

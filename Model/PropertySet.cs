@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class PropertySet : RestResponse
+    public class PropertySet
     {
         /// <summary>
         /// The PropertySet identifier
