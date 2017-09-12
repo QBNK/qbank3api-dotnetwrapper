@@ -103,7 +103,7 @@ namespace QBankApi.Model
         public List<PropertySet> PropertySets { get; set; }
 
 
-        public PropertyResponse getProperty(string systemName)
+        public PropertyResponse GetProperty(string systemName)
         {
             foreach (var set in PropertySets)
             {

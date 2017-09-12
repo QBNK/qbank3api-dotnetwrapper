@@ -11,19 +11,14 @@ namespace QBankApi.Controller
 {
     public class PropertysetsController : ControllerAbstract
     {
-        public PropertysetsController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public PropertysetsController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// Lists all PropertySets
-        /// </summary>
-        public List<PropertySet> ListPropertySets(
+		public PropertysetsController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+
+		/// <summary>
+		/// Lists all PropertySets
+		/// </summary>
+		public List<PropertySet> ListPropertySets(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/propertysets", Method.GET);

@@ -11,25 +11,20 @@ namespace QBankApi.Controller
 {
     public class FoldersController : ControllerAbstract
     {
-        public FoldersController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public FoldersController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// Lists all Folders.
-        ///
-        /// Lists all the Folders that the current user has access to.
-        /// <param name="root">The identifier of a Folder to be treated as the root. Use zero for the absolute root. The root will not be included in the result..</param>
-        /// <param name="depth">The depth for which to include existing subfolders. Use zero to exclude them all together..</param>
-        /// <param name="includeProperties">Whether to return the properties for each folder..</param>
-        /// <param name="includeObjectCounts">Whether to return the number of objects each folder contains..</param>
-        /// </summary>
-        public List<FolderResponse> ListFolders(
+		public FoldersController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+
+		/// <summary>
+		/// Lists all Folders.
+		///
+		/// Lists all the Folders that the current user has access to.
+		/// <param name="root">The identifier of a Folder to be treated as the root. Use zero for the absolute root. The root will not be included in the result..</param>
+		/// <param name="depth">The depth for which to include existing subfolders. Use zero to exclude them all together..</param>
+		/// <param name="includeProperties">Whether to return the properties for each folder..</param>
+		/// <param name="includeObjectCounts">Whether to return the number of objects each folder contains..</param>
+		/// </summary>
+		public List<FolderResponse> ListFolders(
             int root = 0, int depth = 0, bool includeProperties = true, bool includeObjectCounts = false,
             CachePolicy cachePolicy = null)
         {

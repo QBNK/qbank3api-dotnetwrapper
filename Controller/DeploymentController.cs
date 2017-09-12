@@ -11,19 +11,14 @@ namespace QBankApi.Controller
 {
     public class DeploymentController : ControllerAbstract
     {
-        public DeploymentController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public DeploymentController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// Lists all Protocols.
-        /// </summary>
-        public List<Protocol> ListProtocols(
+		public DeploymentController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+		
+		/// <summary>
+		/// Lists all Protocols.
+		/// </summary>
+		public List<Protocol> ListProtocols(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/deployment/protocols", Method.GET);

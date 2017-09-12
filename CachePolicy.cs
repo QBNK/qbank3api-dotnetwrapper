@@ -4,8 +4,8 @@ namespace QBankApi
 {
     public class CachePolicy
     {
-        internal int Lifetime { get; set; }
-        internal CacheType Type { get; set; }
+        public int Lifetime { get; }
+		public CacheType Type { get; protected set;  }
 
         public CachePolicy(CacheType type, int lifetime)
         {
@@ -21,16 +21,6 @@ namespace QBankApi
         public bool IsEnabled()
         {
             return Type != CacheType.Off;
-        }
-
-        public CacheType GetCacheType()
-        {
-            return Type;
-        }
-
-        public int GetLifetime()
-        {
-            return Lifetime;
         }
     }
 }
