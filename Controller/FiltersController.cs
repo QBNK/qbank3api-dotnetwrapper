@@ -11,24 +11,19 @@ namespace QBankApi.Controller
 {
     public class FiltersController : ControllerAbstract
     {
-        public FiltersController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public FiltersController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// Returns a array of FilterItem for the chosen categories
-        ///
-        /// , optionally filtered by specific DeploymentSites.
-        /// <param name="categoryIds">Comma separated string categoryIds we should fetch mediaIds for.</param>
-        /// <param name="deploymentSiteIds">Comma separated string of deploymentSiteIds we should fetch mediaIds for.</param>
-        /// <param name="ignoreGrouping">Whether to include grouped media or not.</param>
-        /// </summary>
-        public List<FilterItem> Categories(
+		public FiltersController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+
+		/// <summary>
+		/// Returns a array of FilterItem for the chosen categories
+		///
+		/// , optionally filtered by specific DeploymentSites.
+		/// <param name="categoryIds">Comma separated string categoryIds we should fetch mediaIds for.</param>
+		/// <param name="deploymentSiteIds">Comma separated string of deploymentSiteIds we should fetch mediaIds for.</param>
+		/// <param name="ignoreGrouping">Whether to include grouped media or not.</param>
+		/// </summary>
+		public List<FilterItem> Categories(
             string categoryIds, string deploymentSiteIds = null, bool ignoreGrouping = false,
             CachePolicy cachePolicy = null)
         {

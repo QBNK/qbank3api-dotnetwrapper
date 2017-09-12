@@ -11,19 +11,14 @@ namespace QBankApi.Controller
 {
     public class ObjecttypesController : ControllerAbstract
     {
-        public ObjecttypesController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
-        {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
-        }
+		public ObjecttypesController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(cachePolicy, apiAddress, authenticator) { }
 
-        /// <summary>
-        /// Lists all Object Types
-        /// </summary>
-        public List<ObjectType> ListObjectTypes(
+		public ObjecttypesController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client) { }
+
+		/// <summary>
+		/// Lists all Object Types
+		/// </summary>
+		public List<ObjectType> ListObjectTypes(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/objecttypes", Method.GET);

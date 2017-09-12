@@ -9,42 +9,54 @@ using QBankApi.Enums;
 using QBankApi.Helpers;
 using QBankApi.Model;
 using RestSharp;
+using RestSharp.Authenticators;
 
 namespace QBankApi.Controller
 {
     public abstract class ControllerAbstract
     {
         //Logger
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        protected static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         //Client
-        internal RestClient Client;
+        public RestClient Client { get; protected set; }
 
         //CachePolicy
-        internal CachePolicy CachePolicy { get; set; }
+        protected CachePolicy CachePolicy { get; set; }
 
-        //Delayed request
-        internal bool Delayed { get; set; }
+		//Delayed request
+		protected bool Delayed { get; set; }
 
-        internal List<DelayedRequest> DelayedRequests { get; set; }
+		internal List<DelayedRequest> DelayedRequests { get; set; }
 
+		protected ControllerAbstract(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : this(cachePolicy)
+        {
+			if (!string.IsNullOrWhiteSpace(apiAddress))
+			{
+				Client = new RestClient(new Uri(apiAddress)) { Authenticator = authenticator };
+			}
+		}
 
-        internal ControllerAbstract(CachePolicy cachePolicy, ref RestClient client)
+		protected ControllerAbstract(CachePolicy cachePolicy, RestClient client) : this(cachePolicy)
         {
             Client = client;
-            CachePolicy = cachePolicy;
         }
 
-        /// <summary>
-        ///     Performs a request to the QBank API.
-        /// </summary>
-        /// <typeparam name="T">The type of response</typeparam>
-        /// <param name="request">The rest client request</param>
-        /// <param name="parameters">The parameters to send</param>
-        /// <param name="cachePolicy">The custom caching policy to use</param>
-        /// <param name="delayed"> If the request should be delayed until destruction</param>
-        /// <returns>The response result</returns>
-        internal T Execute<T>(RestRequest request, CachePolicy cachePolicy = null, bool delayed = false)
+	    private ControllerAbstract(CachePolicy cachePolicy)
+		{
+			CachePolicy = cachePolicy;
+		}
+
+		/// <summary>
+		///     Performs a request to the QBank API.
+		/// </summary>
+		/// <typeparam name="T">The type of response</typeparam>
+		/// <param name="request">The rest client request</param>
+		/// <param name="parameters">The parameters to send</param>
+		/// <param name="cachePolicy">The custom caching policy to use</param>
+		/// <param name="delayed"> If the request should be delayed until destruction</param>
+		/// <returns>The response result</returns>
+		public T Execute<T>(RestRequest request, CachePolicy cachePolicy = null, bool delayed = false)
             where T : class, new()
         {
             if (Client == null)
@@ -118,6 +130,6 @@ namespace QBankApi.Controller
             return response.Data;
         }
 
-        internal OAuth2Authenticator OAuth2Authenticator => Client?.Authenticator as OAuth2Authenticator;
+        protected OAuth2Authenticator OAuth2Authenticator => Client?.Authenticator as OAuth2Authenticator;
     }
 }
