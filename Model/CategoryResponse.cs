@@ -5,8 +5,8 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class CategoryResponse : Category
-    {
+    public class CategoryResponse : Category, IModelWithPropertySets
+	{
         /// <summary>
         /// The Category identifier.
         /// </summary>
