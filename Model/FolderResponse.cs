@@ -5,8 +5,8 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class FolderResponse : Folder
-    {
+    public class FolderResponse : Folder, IModelWithPropertySets
+	{
         /// <summary>
         /// The Folder identifier.
         /// </summary>

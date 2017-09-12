@@ -5,8 +5,8 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class MediaResponse : Media
-    {
+    public class MediaResponse : Media, IModelWithPropertySets
+	{
         /// <summary>
         /// The Media identifier.
         /// </summary>
@@ -102,21 +102,6 @@ namespace QBankApi.Model
         /// </summary>
         public List<PropertySet> PropertySets { get; set; }
 
-
-        public PropertyResponse GetProperty(string systemName)
-        {
-            foreach (var set in PropertySets)
-            {
-                foreach (var prop in set.Properties)
-                {
-                    if (prop.PropertyType.SystemName.Equals(systemName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return prop;
-                    }
-                }
-            }
-
-            throw new ArgumentException($"Property with systemName {systemName} was not found.");
-        }
+	    
     }
 }
