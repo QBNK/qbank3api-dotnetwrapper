@@ -133,6 +133,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserAccessToken.cs" />
     <Compile Include="Model\VideoTemplate.cs" />
+    <Compile Include="Model\_ModelWithPropertySets.cs" />
     <Compile Include="OAuth2Authenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QBankApi.cs" />
