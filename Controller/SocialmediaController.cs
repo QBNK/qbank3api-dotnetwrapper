@@ -11,13 +11,13 @@ namespace QBankApi.Controller
 {
     public class SocialmediaController : ControllerAbstract
     {
-        public SocialmediaController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
+        public SocialmediaController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(
+            cachePolicy, apiAddress, authenticator)
         {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
+        }
+
+        public SocialmediaController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client)
+        {
         }
 
         /// <summary>

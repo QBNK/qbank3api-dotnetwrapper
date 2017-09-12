@@ -11,13 +11,13 @@ namespace QBankApi.Controller
 {
     public class MoodboardsController : ControllerAbstract
     {
-        public MoodboardsController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
+        public MoodboardsController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(
+            cachePolicy, apiAddress, authenticator)
         {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
+        }
+
+        public MoodboardsController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client)
+        {
         }
 
         /// <summary>

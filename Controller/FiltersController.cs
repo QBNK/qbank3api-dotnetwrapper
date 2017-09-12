@@ -11,13 +11,13 @@ namespace QBankApi.Controller
 {
     public class FiltersController : ControllerAbstract
     {
-        public FiltersController(string apiAddress, IAuthenticator authenticator, CachePolicy cachePolicy,
-            ref RestClient client) : base(cachePolicy, ref client)
+        public FiltersController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(
+            cachePolicy, apiAddress, authenticator)
         {
-            if (!string.IsNullOrWhiteSpace(apiAddress))
-            {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
-            }
+        }
+
+        public FiltersController(CachePolicy cachePolicy, RestClient client) : base(cachePolicy, client)
+        {
         }
 
         /// <summary>

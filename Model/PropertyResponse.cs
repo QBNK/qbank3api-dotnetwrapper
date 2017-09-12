@@ -49,25 +49,36 @@ namespace QBankApi.Model
         public object Value { internal get; set; }
 
 
-        public T getValue<T>()
+        public T GetValue<T>()
         {
             if (Type.GetTypeCode(typeof(T)) == TypeCode.DateTime)
             {
                 return (T) (object) Convert.ToDateTime(Value);
             }
 
-            return (T) Value;
+            if (Value is T)
+                return (T) Value;
+            else
+                return default(T);
         }
 
-        public List<T> getArrayProperty<T>()
+        public List<T> GetValueArray<T>()
         {
-            var list = new List<T>();
+            List<T> list = null;
             var array = Value as JsonArray;
-            if (array != null)
+            if (array == null)
             {
-                list.AddRange(from Dictionary<string, object> value in array select (T) value["value"]);
+                var typedValue = GetValue<T>();
+                if (typedValue != null)
+                    list = new List<T>() {typedValue};
             }
-            return list;
+            else
+            {
+                list = new List<T>(from Dictionary<string, object> value in array
+                    where value["value"] is T
+                    select (T) value["value"]);
+            }
+            return list ?? new List<T>();
         }
     }
 }

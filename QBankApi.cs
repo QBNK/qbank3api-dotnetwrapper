@@ -14,80 +14,47 @@ namespace QBankApi
     {
         private readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private readonly List<UserAccessToken> _userAccessTokenCache = new List<UserAccessToken>();
-        const int TokenCacheExpirationTime = 5; // Minutes
+        private const int TokenCacheExpirationTime = 5; // Minutes
 
-        private static Credentials _credentials;
-        private static string _apiAddress;
-        private static CachePolicy _cachePolicy;
-        private static RestClient _client;
+        private readonly Credentials _credentials;
+        private readonly string _apiAddress;
         private readonly string _userName;
 
+        public CachePolicy CachePolicy { get; }
+
         //Lazy loading
-        private readonly Lazy<AccountsController> _accounts = new Lazy<AccountsController>(() =>
-            new AccountsController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
+        public AccountsController Accounts => GetRegisteredController<AccountsController>();
 
-        public AccountsController Accounts => _accounts.Value;
+        public CategoriesController Categories => GetRegisteredController<CategoriesController>();
+        public DeploymentController Deployment => GetRegisteredController<DeploymentController>();
+        public EventsController Events => GetRegisteredController<EventsController>();
+        public FiltersController Filters => GetRegisteredController<FiltersController>();
+        public FoldersController Folders => GetRegisteredController<FoldersController>();
+        public MediaController Media => GetRegisteredController<MediaController>();
+        public MoodboardsController Moodboards => GetRegisteredController<MoodboardsController>();
+        public ObjecttypesController Objecttypes => GetRegisteredController<ObjecttypesController>();
+        public PropertysetsController Propertysets => GetRegisteredController<PropertysetsController>();
+        public SearchController Search => GetRegisteredController<SearchController>();
+        public SocialmediaController Socialmedia => GetRegisteredController<SocialmediaController>();
+        public TemplatesController Templates => GetRegisteredController<TemplatesController>();
 
-        private readonly Lazy<CategoriesController> _categories = new Lazy<CategoriesController>(() =>
-            new CategoriesController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
 
-        public CategoriesController Categories => _categories.Value;
+        private readonly Dictionary<Type, object> _loaders = new Dictionary<Type, object>();
 
-        private readonly Lazy<DeploymentController> _deployment = new Lazy<DeploymentController>(() =>
-            new DeploymentController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
+        public void RegisterControllerLoader<T>(Func<T> lazyLoaderFunc, bool overrideIfExists = true)
+            where T : ControllerAbstract
+        {
+            var loaderType = typeof(T);
+            if (overrideIfExists || !_loaders.ContainsKey(loaderType))
+            {
+                _loaders[loaderType] = new Lazy<T>(lazyLoaderFunc);
+            }
+        }
 
-        public DeploymentController Deployment => _deployment.Value;
-
-        private readonly Lazy<EventsController> _events = new Lazy<EventsController>(() =>
-            new EventsController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public EventsController Events => _events.Value;
-
-        private readonly Lazy<FiltersController> _filters = new Lazy<FiltersController>(() =>
-            new FiltersController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public FiltersController Filters => _filters.Value;
-
-        private readonly Lazy<FoldersController> _folders = new Lazy<FoldersController>(() =>
-            new FoldersController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public FoldersController Folders => _folders.Value;
-
-        private readonly Lazy<MediaController> _media = new Lazy<MediaController>(() =>
-            new MediaController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public MediaController Media => _media.Value;
-
-        private readonly Lazy<MoodboardsController> _moodboards = new Lazy<MoodboardsController>(() =>
-            new MoodboardsController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public MoodboardsController Moodboards => _moodboards.Value;
-
-        private readonly Lazy<ObjecttypesController> _objecttypes = new Lazy<ObjecttypesController>(() =>
-            new ObjecttypesController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public ObjecttypesController Objecttypes => _objecttypes.Value;
-
-        private readonly Lazy<PropertysetsController> _propertysets = new Lazy<PropertysetsController>(() =>
-            new PropertysetsController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public PropertysetsController Propertysets => _propertysets.Value;
-
-        private readonly Lazy<SearchController> _search = new Lazy<SearchController>(() =>
-            new SearchController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public SearchController Search => _search.Value;
-
-        private readonly Lazy<SocialmediaController> _socialmedia = new Lazy<SocialmediaController>(() =>
-            new SocialmediaController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public SocialmediaController Socialmedia => _socialmedia.Value;
-
-        private readonly Lazy<TemplatesController> _templates = new Lazy<TemplatesController>(() =>
-            new TemplatesController(_apiAddress, new OAuth2Authenticator(_credentials), _cachePolicy, ref _client));
-
-        public TemplatesController Templates => _templates.Value;
-
+        public T GetRegisteredController<T>() where T : ControllerAbstract
+        {
+            return (_loaders[typeof(T)] as Lazy<T>)?.Value;
+        }
 
         /// <summary>
         ///     Initialize QBank Api
@@ -108,10 +75,22 @@ namespace QBankApi
 
             _credentials = credentials;
             _apiAddress = apiAddress;
-            _cachePolicy = cachePolicy;
-            _client = new RestClient(new Uri(_apiAddress)) {Authenticator = new OAuth2Authenticator(_credentials)};
-
+            CachePolicy = cachePolicy;
             _userName = credentials.UserName;
+
+            RegisterControllerLoader(() => new AccountsController(CachePolicy, Client));
+            RegisterControllerLoader(() => new CategoriesController(CachePolicy, Client));
+            RegisterControllerLoader(() => new DeploymentController(CachePolicy, Client));
+            RegisterControllerLoader(() => new EventsController(CachePolicy, Client));
+            RegisterControllerLoader(() => new FiltersController(CachePolicy, Client));
+            RegisterControllerLoader(() => new FoldersController(CachePolicy, Client));
+            RegisterControllerLoader(() => new MediaController(CachePolicy, Client));
+            RegisterControllerLoader(() => new MoodboardsController(CachePolicy, Client));
+            RegisterControllerLoader(() => new ObjecttypesController(CachePolicy, Client));
+            RegisterControllerLoader(() => new PropertysetsController(CachePolicy, Client));
+            RegisterControllerLoader(() => new SearchController(CachePolicy, Client));
+            RegisterControllerLoader(() => new SocialmediaController(CachePolicy, Client));
+            RegisterControllerLoader(() => new TemplatesController(CachePolicy, Client));
         }
 
         internal TokenResponse GetAccessToken()
