@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class CommentResponse : Comment
+    public class CommentResponse
     {
         /// <summary>
         /// Id of the comment

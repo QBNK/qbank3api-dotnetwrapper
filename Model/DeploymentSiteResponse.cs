@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class DeploymentSiteResponse : DeploymentSite
+    public class DeploymentSiteResponse : DeploymentSite, IModelWithPropertySets
     {
         /// <summary>
         /// The DeploymentSite identifier.

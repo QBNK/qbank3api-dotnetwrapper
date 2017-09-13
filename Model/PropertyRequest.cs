@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QBankApi.Model
 {
-    public class PropertyRequest : PropertyCriteria
+    public class PropertyRequest
     {
         /// <summary>
         /// Whether this property should be included in the SearchResult.

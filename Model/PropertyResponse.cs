@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
-
 namespace QBankApi.Model
 {
     public class PropertyResponse
@@ -46,7 +45,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The value of the Property.
         /// </summary>
-        public object Value { internal get; set; }
+        public object Value { get; set; }
 
 
         public T GetValue<T>()

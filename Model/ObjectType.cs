@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class ObjectType
+    public class ObjectType : IModelWithPropertySets
     {
         /// <summary>
         /// The name of the ObjectType

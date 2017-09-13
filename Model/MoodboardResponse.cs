@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class MoodboardResponse : Moodboard
+    public class MoodboardResponse : Moodboard, IModelWithPropertySets
     {
         /// <summary>
         /// The Moodboard identifier
