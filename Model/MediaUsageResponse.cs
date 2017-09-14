@@ -5,7 +5,7 @@ using System;
 
 namespace QBankApi.Model
 {
-    public class MediaUsageResponse
+    public class MediaUsageResponse : MediaUsage
     {
         /// <summary>
         ///
