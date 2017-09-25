@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Category identifier of the Category the Media belongs to.
         /// </summary>
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
         /// <summary>
         /// The Media's filename.
@@ -19,12 +19,12 @@ namespace QBankApi.Model
         /// <summary>
         /// The Media parent Media identifier. Only set when the Media is grouped.
         /// </summary>
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         /// <summary>
         /// The Media replacement Media identifier. Only set when the Media has been replaced, ie. versioning.
         /// </summary>
-        public int ReplacedBy { get; set; }
+        public int? ReplacedBy { get; set; }
 
         /// <summary>
         /// The Objects name.
@@ -34,7 +34,7 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether the object is deleted.
         /// </summary>
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
@@ -44,6 +44,6 @@ namespace QBankApi.Model
         /// <summary>
         /// The identifier of the ObjectType describing the propertysets this object should use.
         /// </summary>
-        public int TypeId { get; set; }
+        public int? TypeId { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Group identifier.
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The name of the Group
@@ -25,12 +25,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether the object has been modified since constructed.
         /// </summary>
-        public bool Dirty { get; set; }
+        public bool? Dirty { get; set; }
 
         /// <summary>
         /// Indicates if this Group is deleted
         /// </summary>
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// When the Group was created.
@@ -40,7 +40,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The User Id that created the Group
         /// </summary>
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
         /// <summary>
         /// When the Group was updated.
@@ -50,7 +50,7 @@ namespace QBankApi.Model
         /// <summary>
         /// User Id that updated the Group
         /// </summary>
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
         /// <summary>
         /// An array of Functionalities connected to this Group

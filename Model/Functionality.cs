@@ -10,7 +10,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Functionality identifier.
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The name of the functionality (used programmatically)
@@ -25,12 +25,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether the object has been modified since constructed.
         /// </summary>
-        public bool Dirty { get; set; }
+        public bool? Dirty { get; set; }
 
         /// <summary>
         /// Indicates if this Functionality is deleted
         /// </summary>
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// When the Functionality was created.
@@ -40,7 +40,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The User Id that created the Functionality
         /// </summary>
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
         /// <summary>
         /// When the Functionality was updated.
@@ -50,7 +50,7 @@ namespace QBankApi.Model
         /// <summary>
         /// User Id that updated the Functionality
         /// </summary>
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
         /// <summary>
         /// A title that can be used to show the user

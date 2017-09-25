@@ -10,7 +10,7 @@ namespace QBankApi.Model
         /// <summary>
         ///
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         ///
@@ -25,6 +25,6 @@ namespace QBankApi.Model
         /// <summary>
         ///
         /// </summary>
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
     }
 }

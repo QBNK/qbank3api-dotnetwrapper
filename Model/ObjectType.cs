@@ -25,7 +25,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The id of the ObjectType
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// When the ObjectType was created.
@@ -35,7 +35,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The identifier of the User who created the ObjectType.
         /// </summary>
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
         /// <summary>
         /// When the ObjectType was updated.
@@ -45,7 +45,7 @@ namespace QBankApi.Model
         /// <summary>
         /// Which user that updated the ObjectType.
         /// </summary>
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
         /// <summary>
         /// The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
@@ -55,6 +55,6 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether this ObjectType is deleted.
         /// </summary>
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
     }
 }

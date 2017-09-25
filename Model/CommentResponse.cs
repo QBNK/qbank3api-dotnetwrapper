@@ -10,12 +10,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Id of the comment
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The QBank user that wrote this comment
         /// </summary>
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
         /// <summary>
         /// Time this comment was made

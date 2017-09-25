@@ -9,12 +9,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Number of hits per page in the SearchResult
         /// </summary>
-        public int Limit { get; set; }
+        public int? Limit { get; set; }
 
         /// <summary>
         /// Starting position of SearchResult
         /// </summary>
-        public int Offset { get; set; }
+        public int? Offset { get; set; }
 
         /// <summary>
         /// An array of Media matching the search
@@ -29,6 +29,6 @@ namespace QBankApi.Model
         /// <summary>
         /// Total number of hits
         /// </summary>
-        public int TotalHits { get; set; }
+        public int? TotalHits { get; set; }
     }
 }

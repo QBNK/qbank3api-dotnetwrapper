@@ -10,7 +10,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The identifier of the DeploymentSite this file is deployed to.
         /// </summary>
-        public int DeploymentSiteId { get; set; }
+        public int? DeploymentSiteId { get; set; }
 
         /// <summary>
         /// The filename of the deployed file.
@@ -20,12 +20,12 @@ namespace QBankApi.Model
         /// <summary>
         /// The identifier of the Image template used.
         /// </summary>
-        public int ImageTemplateId { get; set; }
+        public int? ImageTemplateId { get; set; }
 
         /// <summary>
         /// The identifier of the Video template used.
         /// </summary>
-        public int VideoTemplateId { get; set; }
+        public int? VideoTemplateId { get; set; }
 
         /// <summary>
         /// The name of the template, if any.
@@ -45,7 +45,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The size of the file on disk
         /// </summary>
-        public int Filesize { get; set; }
+        public int? Filesize { get; set; }
 
         /// <summary>
         /// Metadata associated with the deployed media

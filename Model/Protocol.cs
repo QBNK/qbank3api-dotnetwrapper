@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Protocol identifier.
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The human readable description of the Protocol.

@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Audio Template identifier
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The name of the Audio Template

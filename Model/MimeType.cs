@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The MimeType identifier.
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The MimeType string representation.
@@ -24,12 +24,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether the MimeType is usable in an ImageTemplate.
         /// </summary>
-        public bool Imagetemplate { get; set; }
+        public bool? Imagetemplate { get; set; }
 
         /// <summary>
         /// Whether the MimeType is usable in a VideoTemplate.
         /// </summary>
-        public bool Videotemplate { get; set; }
+        public bool? Videotemplate { get; set; }
 
         /// <summary>
         /// The default file extension of the MimeType.

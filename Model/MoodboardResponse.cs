@@ -10,7 +10,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Moodboard identifier
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Enduser hash used to identify this moodboard.
@@ -20,7 +20,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The base Object identifier.
         /// </summary>
-        public int ObjectId { get; set; }
+        public int? ObjectId { get; set; }
 
         /// <summary>
         /// When the Object was created.
@@ -30,7 +30,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The identifier of the User who created the Object.
         /// </summary>
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
         /// <summary>
         /// When the Object was updated.
@@ -40,12 +40,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Which user that updated the Object.
         /// </summary>
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
         /// <summary>
         /// Whether the object has been modified since constructed.
         /// </summary>
-        public bool Dirty { get; set; }
+        public bool? Dirty { get; set; }
 
         /// <summary>
         /// The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.

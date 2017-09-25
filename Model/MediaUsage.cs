@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         ///
         /// </summary>
-        public int MediaId { get; set; }
+        public int? MediaId { get; set; }
 
         /// <summary>
         ///

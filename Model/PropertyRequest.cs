@@ -9,6 +9,6 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether this property should be included in the SearchResult.
         /// </summary>
-        public bool Forfetching { get; set; }
+        public bool? Forfetching { get; set; }
     }
 }

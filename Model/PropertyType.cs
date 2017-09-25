@@ -15,7 +15,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The identifier of the User who created the Property.
         /// </summary>
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
         /// <summary>
         /// When the Property was updated.
@@ -25,12 +25,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Which user who updated the Property.
         /// </summary>
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
         /// <summary>
         /// Whether the Property is deleted.
         /// </summary>
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// The Property name.
@@ -50,7 +50,7 @@ namespace QBankApi.Model
         /// <summary>
         /// Data type for the Property (1: Boolean, 2: DateTime, 3: Decimal, 4: Float, 5: Integer, 6: String) In addition, definition can alter the way a Property should be displayed.
         /// </summary>
-        public int DataTypeId { get; set; }
+        public int? DataTypeId { get; set; }
 
         /// <summary>
         /// A Key/Value Object containing extra information about how this Property should be used.

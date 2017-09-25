@@ -9,12 +9,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Starting offset of the search
         /// </summary>
-        public int Offset { get; set; }
+        public int? Offset { get; set; }
 
         /// <summary>
         /// The number of results to return
         /// </summary>
-        public int Limit { get; set; }
+        public int? Limit { get; set; }
 
         /// <summary>
         /// A freetext string to search for, operators like and/or/not and grouping by parentheses is available
@@ -64,7 +64,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The depth of folders to fetch objects from when doing folder searches
         /// </summary>
-        public int FolderDepth { get; set; }
+        public int? FolderDepth { get; set; }
 
         /// <summary>
         /// An array with MoodboardIds to search within
@@ -79,12 +79,17 @@ namespace QBankApi.Model
         /// <summary>
         /// Indicates that we should ignore grouping and return child objects in the result
         /// </summary>
-        public bool IgnoreGrouping { get; set; }
+        public bool? IgnoreGrouping { get; set; }
+
+        /// <summary>
+        /// Indicates that we should include grouped objects in each object
+        /// </summary>
+        public bool? IncludeChildren { get; set; }
 
         /// <summary>
         /// Search for media that have this media as parent
         /// </summary>
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         /// <summary>
         /// An array with DeploymentSiteIds to search within
@@ -139,6 +144,6 @@ namespace QBankApi.Model
         /// <summary>
         /// Search only for duplicates
         /// </summary>
-        public bool Duplicates { get; set; }
+        public bool? Duplicates { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         /// ID of the Filter (only applicable if Category or Folder FilterItem)
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Title

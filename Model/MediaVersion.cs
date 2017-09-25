@@ -10,7 +10,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Media identifier.
         /// </summary>
-        public int MediaId { get; set; }
+        public int? MediaId { get; set; }
 
         /// <summary>
         /// The Media filename
@@ -25,7 +25,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Media replacement Media identifier. Only set when the Media has been replaced, ie. versioning.
         /// </summary>
-        public int ReplacedBy { get; set; }
+        public int? ReplacedBy { get; set; }
 
         /// <summary>
         /// An optional comment about the version.
@@ -35,11 +35,11 @@ namespace QBankApi.Model
         /// <summary>
         /// The User identifier of the user who created the new version.
         /// </summary>
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         /// <summary>
         /// The version number
         /// </summary>
-        public int Version { get; set; }
+        public int? Version { get; set; }
     }
 }

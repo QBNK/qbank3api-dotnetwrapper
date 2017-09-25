@@ -19,7 +19,7 @@ namespace QBankApi.Model
         /// <summary>
         /// When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc)
         /// </summary>
-        public int SourceId { get; set; }
+        public int? SourceId { get; set; }
 
         /// <summary>
         /// When sorting on Media Popularity, a optional dateRange to find popular media within
@@ -39,6 +39,6 @@ namespace QBankApi.Model
         /// <summary>
         /// When sorting on deploymentdate, the optional site id to sort by
         /// </summary>
-        public int DeploymentSiteId { get; set; }
+        public int? DeploymentSiteId { get; set; }
     }
 }

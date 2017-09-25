@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Image Template identifier
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The name of the Image Template

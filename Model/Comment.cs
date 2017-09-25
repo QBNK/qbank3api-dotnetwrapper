@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         /// Object that this comment is made on
         /// </summary>
-        public int ObjectId { get; set; }
+        public int? ObjectId { get; set; }
 
         /// <summary>
         /// The actual comment
@@ -20,7 +20,7 @@ namespace QBankApi.Model
         /// <summary>
         /// If a reply, indicates this comments parent
         /// </summary>
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         /// <summary>
         /// Set only if a anonymous user wrote this comment, see createdBy otherwise

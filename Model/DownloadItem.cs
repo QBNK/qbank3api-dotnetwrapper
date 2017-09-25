@@ -9,26 +9,26 @@ namespace QBankApi.Model
         /// <summary>
         /// Media ID
         /// </summary>
-        public int MediaId { get; set; }
+        public int? MediaId { get; set; }
 
         /// <summary>
         /// ImageTemplate ID
         /// </summary>
-        public int ImageTemplateId { get; set; }
+        public int? ImageTemplateId { get; set; }
 
         /// <summary>
         /// ImageTemplate ID
         /// </summary>
-        public int VideoTemplateId { get; set; }
+        public int? VideoTemplateId { get; set; }
 
         /// <summary>
         /// ImageTemplate ID
         /// </summary>
-        public int DocumentTemplateId { get; set; }
+        public int? DocumentTemplateId { get; set; }
 
         /// <summary>
         /// ImageTemplate ID
         /// </summary>
-        public int AudioTemplateId { get; set; }
+        public int? AudioTemplateId { get; set; }
     }
 }

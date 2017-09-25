@@ -10,7 +10,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The PropertySet identifier
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The PropertySet name.
@@ -25,7 +25,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The identifier of the User who created the PropertySet.
         /// </summary>
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
         /// <summary>
         /// When the PropertySet was updated.
@@ -35,22 +35,22 @@ namespace QBankApi.Model
         /// <summary>
         /// Which user who updated the PropertySet.
         /// </summary>
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
         /// <summary>
         /// Whether the PropertySet is deleted.
         /// </summary>
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// Whether the PropertySet has been modified since constructed.
         /// </summary>
-        public bool Dirty { get; set; }
+        public bool? Dirty { get; set; }
 
         /// <summary>
         /// Wheater the PropertySet is a system propertyset or not. (System propertysets are hidden from the enduser)
         /// </summary>
-        public bool System { get; set; }
+        public bool? System { get; set; }
 
         /// <summary>
         /// The Properties associated with the PropertySet.

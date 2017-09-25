@@ -39,7 +39,7 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether grouped Media should be deployed.
         /// </summary>
-        public bool Children { get; set; }
+        public bool? Children { get; set; }
 
         /// <summary>
         /// The color associated with the DeploymentSite as a #-prepended hexadecimal string.
@@ -69,7 +69,7 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether the object is deleted.
         /// </summary>
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
@@ -79,6 +79,6 @@ namespace QBankApi.Model
         /// <summary>
         /// The identifier of the ObjectType describing the propertysets this object should use.
         /// </summary>
-        public int TypeId { get; set; }
+        public int? TypeId { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The Video Template identifier
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The name of the Video Template

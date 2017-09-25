@@ -10,7 +10,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The User identifier.
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// The full name of the User.
@@ -60,12 +60,12 @@ namespace QBankApi.Model
         /// <summary>
         /// Whether the User has been modified since constructed.
         /// </summary>
-        public bool Dirty { get; set; }
+        public bool? Dirty { get; set; }
 
         /// <summary>
         /// Indicates if this User is deleted
         /// </summary>
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// When the User was created.
@@ -75,7 +75,7 @@ namespace QBankApi.Model
         /// <summary>
         /// The User Id that created the User
         /// </summary>
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
         /// <summary>
         /// When the User was updated.
@@ -85,7 +85,7 @@ namespace QBankApi.Model
         /// <summary>
         /// User Id that updated the User
         /// </summary>
-        public int UpdatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
         /// <summary>
         /// An array of Functionalities connected to this User
