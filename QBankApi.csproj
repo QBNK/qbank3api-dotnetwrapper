@@ -33,11 +33,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
+      <HintPath>..\..\..\RiderProjects\ConsoleApplication\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\..\..\RiderProjects\ConsoleApplication\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\RiderProjects\ConsoleApplication\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="slf4net, Version=0.1.14.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>packages\slf4net.0.1.14.1\lib\net35\slf4net.dll</HintPath>
     </Reference>
+    <Reference Include="slf4net, Version=0.1.14.1, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\RiderProjects\ConsoleApplication\packages\slf4net.0.1.14.1\lib\net35\slf4net.dll</HintPath>
+    </Reference>
     <Reference Include="slf4net.log4net, Version=0.1.32.1, Culture=neutral, PublicKeyToken=592edb3b6b36b5ba">
       <HintPath>packages\slf4net.log4net.0.1.32.1\lib\net35\slf4net.log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="slf4net.log4net, Version=0.1.32.1, Culture=neutral, PublicKeyToken=592edb3b6b36b5ba">
+      <HintPath>..\..\..\RiderProjects\ConsoleApplication\packages\slf4net.log4net.0.1.32.1\lib\net35\slf4net.log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

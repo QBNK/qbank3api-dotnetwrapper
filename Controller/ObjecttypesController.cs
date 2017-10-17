@@ -23,12 +23,11 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists all Object Types
         /// </summary>
-        public List<ObjectType> ListObjectTypes(
+        public virtual List<ObjectType> ListObjectTypes(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/objecttypes", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<ObjectType>>(request, cachePolicy);
         }
@@ -39,12 +38,11 @@ namespace QBankApi.Controller
         /// Fetches an ObjectType by the specified identifier.
         /// <param name="id">The ObjectType identifier.</param>
         /// </summary>
-        public ObjectType RetrieveObjectType(
+        public virtual ObjectType RetrieveObjectType(
             int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/objecttypes/{id}", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<ObjectType>(request, cachePolicy);
         }

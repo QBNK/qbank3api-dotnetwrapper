@@ -12,6 +12,9 @@ namespace QBankApi.Controller
 {
     public class MediaController : ControllerAbstract
     {
+        private const int ChunkSize = 10485760;
+
+
         public MediaController(CachePolicy cachePolicy, string apiAddress, IAuthenticator authenticator) : base(
             cachePolicy, apiAddress, authenticator)
         {
@@ -24,13 +27,14 @@ namespace QBankApi.Controller
         /// <summary>
         /// Fetches a specific Media.
         /// <param name="id">The Media identifier.</param>
+        /// <param name="includeChildren">Includes children in the media.</param>
         /// </summary>
-        public MediaResponse RetrieveMedia(
-            int id, CachePolicy cachePolicy = null)
+        public virtual MediaResponse RetrieveMedia(
+            int id, bool includeChildren = false, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}", Method.GET);
             request.Parameters.Clear();
-
+            request.AddParameter("includeChildren", includeChildren, ParameterType.QueryString);
 
             return Execute<MediaResponse>(request, cachePolicy);
         }
@@ -52,12 +56,11 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier..</param>
         /// <param name="template">Optional template of Media..</param>
         /// </summary>
-        public void RetrieveFileData(
+        public virtual void RetrieveFileData(
             Stream writer, int id, string template = null, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/asset");
             request.AddParameter("template", template, ParameterType.QueryString);
-
             request.ResponseWriter = (responseStream) => responseStream.CopyTo(writer);
             Client.DownloadData(request);
         }
@@ -67,13 +70,12 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier..</param>
         /// <param name="media">[DEPRECATED] Internal use only.</param>
         /// </summary>
-        public List<DeploymentFile> ListDeployedFiles(
+        public virtual List<DeploymentFile> ListDeployedFiles(
             int id, Media media = null, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/deployment/files", Method.GET);
             request.Parameters.Clear();
             request.AddParameter("media", media, ParameterType.QueryString);
-
 
             return Execute<List<DeploymentFile>>(request, cachePolicy);
         }
@@ -82,12 +84,11 @@ namespace QBankApi.Controller
         /// Fetches all DeploymentSites a Media is deployed to.
         /// <param name="id">The Media identifier..</param>
         /// </summary>
-        public List<DeploymentSiteResponse> ListDeploymentSites(
+        public virtual List<DeploymentSiteResponse> ListDeploymentSites(
             int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/deployment/sites", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<DeploymentSiteResponse>>(request, cachePolicy);
         }
@@ -101,14 +102,13 @@ namespace QBankApi.Controller
         /// <param name="template">Optional template to download the media in (NOTE: This should not be used for fetching images often, use very sparingly and consider using publish-sites and templates instead).</param>
         /// <param name="templateType">Indicates type of template, valid values are; image, video.</param>
         /// </summary>
-        public void Download(
+        public virtual void Download(
             Stream writer, int id, string template = null, string templateType = "image",
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/download");
             request.AddParameter("template", template, ParameterType.QueryString);
             request.AddParameter("templateType", templateType, ParameterType.QueryString);
-
             request.ResponseWriter = (responseStream) => responseStream.CopyTo(writer);
             Client.DownloadData(request);
         }
@@ -118,13 +118,12 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier..</param>
         /// <param name="depth">The depth for which to include existing subfolders. Use zero to exclude them all toghether..</param>
         /// </summary>
-        public List<FolderResponse> ListFolders(
+        public virtual List<FolderResponse> ListFolders(
             int id, int depth = 0, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/folders", Method.GET);
             request.Parameters.Clear();
             request.AddParameter("depth", depth, ParameterType.QueryString);
-
 
             return Execute<List<FolderResponse>>(request, cachePolicy);
         }
@@ -133,12 +132,11 @@ namespace QBankApi.Controller
         /// Fetches all Moodboards a Media is a member of.
         /// <param name="id">The Media identifier..</param>
         /// </summary>
-        public List<MoodboardResponse> ListMoodboards(
+        public virtual List<MoodboardResponse> ListMoodboards(
             int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/moodboards", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<MoodboardResponse>>(request, cachePolicy);
         }
@@ -149,12 +147,11 @@ namespace QBankApi.Controller
         /// Fetches all DeployedFiles a Media has.
         /// <param name="id">The Media identifier..</param>
         /// </summary>
-        public List<DeploymentFile> ListSocialMediaFiles(
+        public virtual List<DeploymentFile> ListSocialMediaFiles(
             int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/socialmedia/files", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<DeploymentFile>>(request, cachePolicy);
         }
@@ -163,12 +160,11 @@ namespace QBankApi.Controller
         /// Fetches all SocialMedia sites a Media is published to.
         /// <param name="id">The Media identifier..</param>
         /// </summary>
-        public List<SocialMedia> ListSocialMedia(
+        public virtual List<SocialMedia> ListSocialMedia(
             int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/socialmedia/sites", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<SocialMedia>>(request, cachePolicy);
         }
@@ -177,12 +173,11 @@ namespace QBankApi.Controller
         /// Fetches all External Usages for a Media.
         /// <param name="id">The Media identifier..</param>
         /// </summary>
-        public List<MediaUsageResponse> ListUsages(
+        public virtual List<MediaUsageResponse> ListUsages(
             int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/usages", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<MediaUsageResponse>>(request, cachePolicy);
         }
@@ -193,12 +188,11 @@ namespace QBankApi.Controller
         /// The id may be of any media version in the list; first, somewhere in between or last.
         /// <param name="id">The Media identifier..</param>
         /// </summary>
-        public List<MediaVersion> ListVersions(
+        public virtual List<MediaVersion> ListVersions(
             int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/versions", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<MediaVersion>>(request, cachePolicy);
         }
@@ -207,12 +201,11 @@ namespace QBankApi.Controller
         /// Fetches eventual comments made on this media
         /// <param name="mediaId">The Media identifier..</param>
         /// </summary>
-        public List<CommentResponse> ListComments(
+        public virtual List<CommentResponse> ListComments(
             int mediaId, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{mediaId}/comments", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<CommentResponse>>(request, cachePolicy);
         }
@@ -225,74 +218,14 @@ namespace QBankApi.Controller
         /// <param name="ids">Array of Media ID:s to download.</param>
         /// <param name="template">Optional template to download all Media in..</param>
         /// </summary>
-        public void DownloadArchive(
+        public virtual void DownloadArchive(
             Stream writer, List<int> ids, string template = null, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/download");
             request.AddParameter("ids", ids, ParameterType.QueryString);
             request.AddParameter("template", template, ParameterType.QueryString);
-
             request.ResponseWriter = (responseStream) => responseStream.CopyTo(writer);
             Client.DownloadData(request);
-        }
-
-        /// <summary>
-        /// Publishes an archive of several Media.
-        ///
-        /// Publishes an archive of several Media to a deploymentssite by supplying either a list of mediaIds or objectIds and a deployment site id.
-        /// <param name="idType">Type of ID, Object or Media, sending ObjectId will automatically use the latest version of a Object..</param>
-        /// <param name="ids">A comma-separated list of IDs to zip and publish.</param>
-        /// <param name="deploymentSiteId">The site to publish the archive to.</param>
-        /// <param name="filename">Optional filename for the zip-archive, a filename will automatically be generated if omitted..</param>
-        /// </summary>
-        public object PublishArchive(
-            string idType, string ids, int deploymentSiteId, string filename = null, CachePolicy cachePolicy = null)
-        {
-            var request = new RestRequest($"v1/media/publishArchive", Method.GET);
-            request.Parameters.Clear();
-            request.AddParameter("idType", idType, ParameterType.QueryString);
-            request.AddParameter("ids", ids, ParameterType.QueryString);
-            request.AddParameter("deploymentSiteId", deploymentSiteId, ParameterType.QueryString);
-            request.AddParameter("filename", filename, ParameterType.QueryString);
-
-
-            return Execute<object>(request, cachePolicy);
-        }
-
-        /// <summary>
-        /// Upload a new media to QBank
-        ///
-        /// This upload endpoint has been specifically tailored to fit chunked uploading (works well with Plupload2 for example). Max chunk size is about 10mb, if your files are larger than this, split it up and set correct chunk and chunks argument in the call.
-        ///  For example a 26mb file might be split in 3 chunks, so the following 3 calls should be made
-        ///  POST /media.json?chunks=3&chunk=0&filename=largefile.txt&categoryId=1 (file data is sent in body)
-        ///  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
-        ///  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
-        ///
-        /// <param name="name">Filename of the file being uploaded</param>
-        /// <param name="chunk">The chunk we are currently uploading, starts at 0</param>
-        /// <param name="chunks">Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded</param>
-        /// <param name="fileId">A unique fileId that will be used for this upload, if none is given one will be given to you</param>
-        /// <param name="categoryId">The category to place the file in</param>
-        /// </summary>
-        public Dictionary<string, object> UploadFileChunked(
-            string name, int chunk, int chunks, string fileId, int categoryId)
-        {
-            var request = new RestRequest($"v1/media", Method.POST);
-            request.Parameters.Clear();
-
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(name),
-                ParameterType.RequestBody);
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(chunk),
-                ParameterType.RequestBody);
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(chunks),
-                ParameterType.RequestBody);
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(fileId),
-                ParameterType.RequestBody);
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(categoryId),
-                ParameterType.RequestBody);
-
-
-            return Execute<Dictionary<string, object>>(request);
         }
 
         /// <summary>
@@ -302,15 +235,13 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier.</param>
         /// <param name="media">A JSON encoded Media representing the updates</param>
         /// </summary>
-        public MediaResponse UpdateMedia(
+        public virtual MediaResponse UpdateMedia(
             int id, Media media)
         {
             var request = new RestRequest($"v1/media/{id}", Method.POST);
             request.Parameters.Clear();
-
             request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(media),
                 ParameterType.RequestBody);
-
 
             return Execute<MediaResponse>(request);
         }
@@ -322,15 +253,13 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier.</param>
         /// <param name="children">An array of int values.</param>
         /// </summary>
-        public object Group(
+        public virtual object Group(
             int id, List<int> children)
         {
             var request = new RestRequest($"v1/media/{id}/group", Method.POST);
             request.Parameters.Clear();
-
             request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(children),
                 ParameterType.RequestBody);
-
 
             return Execute<object>(request);
         }
@@ -341,12 +270,11 @@ namespace QBankApi.Controller
         /// Can not restore a Media that has been hard deleted!
         /// <param name="id">The Media identifier.</param>
         /// </summary>
-        public MediaResponse RestoreMedia(
+        public virtual MediaResponse RestoreMedia(
             int id)
         {
             var request = new RestRequest($"v1/media/{id}/restore", Method.POST);
             request.Parameters.Clear();
-
 
             return Execute<MediaResponse>(request);
         }
@@ -360,71 +288,17 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier.</param>
         /// <param name="status">The new status of the media</param>
         /// </summary>
-        public Dictionary<string, object> SetStatus(
+        public virtual Dictionary<string, object> SetStatus(
             int id, string status)
         {
             var request = new RestRequest($"v1/media/{id}/status", Method.POST);
             request.Parameters.Clear();
-
             request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(status),
                 ParameterType.RequestBody);
 
-
             return Execute<Dictionary<string, object>>(request);
         }
 
-        /// <summary>
-        /// Upload a new preview for a media.
-        ///
-        /// Replaces the current preview thumbnails for a media with the supplied one. Recommended image size is minimum 1000px on the longest side. If a PDF is uploaded it will be added as a preview document. This enables users to browse documents directly from within QBank. The maximum recommended file size is 10MB.
-        /// <param name="id"></param>
-        /// </summary>
-        public object UploadPreview(
-            int id)
-        {
-            var request = new RestRequest($"v1/media/{id}/uploadpreview", Method.POST);
-            request.Parameters.Clear();
-
-
-            return Execute<object>(request);
-        }
-
-        /// <summary>
-        /// Upload a new version of a media
-        ///
-        /// This upload endpoint has been specifically tailored to fit chunked uploading (works well with Plupload2 for example). Max chunk size is about 10mb, if your files are larger than this, split it up and set correct chunk and chunks argument in the call.
-        ///  For example a 26mb file might be split in 3 chunks, so the following 3 calls should be made
-        ///  POST /media.json?chunks=3&chunk=0&filename=largefile.txt&categoryId=1 (file data is sent in body)
-        ///  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
-        ///  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
-        ///
-        /// <param name="id">The Media identifier.</param>
-        /// <param name="revisionComment">The revision comment</param>
-        /// <param name="name">Filename of the file being uploaded</param>
-        /// <param name="chunk">The chunk we are currently uploading, starts at 0</param>
-        /// <param name="chunks">Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded</param>
-        /// <param name="fileId">A unique fileId that will be used for this upload, if none is given one will be given to you</param>
-        /// </summary>
-        public Dictionary<string, object> UploadNewVersionChunked(
-            int id, string revisionComment, string name, int chunk, int chunks, string fileId)
-        {
-            var request = new RestRequest($"v1/media/{id}/version", Method.POST);
-            request.Parameters.Clear();
-
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(revisionComment),
-                ParameterType.RequestBody);
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(name),
-                ParameterType.RequestBody);
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(chunk),
-                ParameterType.RequestBody);
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(chunks),
-                ParameterType.RequestBody);
-            request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(fileId),
-                ParameterType.RequestBody);
-
-
-            return Execute<Dictionary<string, object>>(request);
-        }
 
         /// <summary>
         /// Post a comment on a media
@@ -433,15 +307,13 @@ namespace QBankApi.Controller
         /// <param name="mediaId">the media to post the comment on.</param>
         /// <param name="comment">The comment to post</param>
         /// </summary>
-        public CommentResponse CreateComment(
+        public virtual CommentResponse CreateComment(
             int mediaId, Comment comment)
         {
             var request = new RestRequest($"v1/media/{mediaId}/comments", Method.POST);
             request.Parameters.Clear();
-
             request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(comment),
                 ParameterType.RequestBody);
-
 
             return Execute<CommentResponse>(request);
         }
@@ -452,15 +324,13 @@ namespace QBankApi.Controller
         /// Combines several slides into one presentation.
         /// <param name="structure">An array of QBNK\QBank\Api\v1\Model\Slides\SlideStructure values.</param>
         /// </summary>
-        public object CombineSlides(
+        public virtual object CombineSlides(
             List<SlideStructure> structure)
         {
             var request = new RestRequest($"v1/media/slides/combine", Method.POST);
             request.Parameters.Clear();
-
             request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(structure),
                 ParameterType.RequestBody);
-
 
             return Execute<object>(request);
         }
@@ -472,15 +342,13 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier.</param>
         /// <param name="properties">An array of QBNK\QBank\Api\v1\Model\Property values.</param>
         /// </summary>
-        public Dictionary<string, object> UpdateProperties(
+        public virtual Dictionary<string, object> UpdateProperties(
             int id, List<Property> properties)
         {
             var request = new RestRequest($"v1/media/{id}/properties", Method.PUT);
             request.Parameters.Clear();
-
             request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(properties),
                 ParameterType.RequestBody);
-
 
             return Execute<Dictionary<string, object>>(request);
         }
@@ -492,13 +360,12 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier.</param>
         /// <param name="hardDelete">Prevent restoration of the Media..</param>
         /// </summary>
-        public MediaResponse RemoveMedia(
+        public virtual MediaResponse RemoveMedia(
             int id, bool hardDelete = false)
         {
             var request = new RestRequest($"v1/media/{id}", Method.DELETE);
             request.Parameters.Clear();
             request.AddParameter("hardDelete", hardDelete, ParameterType.QueryString);
-
 
             return Execute<MediaResponse>(request);
         }
@@ -510,14 +377,105 @@ namespace QBankApi.Controller
         /// <param name="mediaId">the media to delete the comment from.</param>
         /// <param name="commentId">the comment to delete.</param>
         /// </summary>
-        public Comment RemoveComment(
+        public virtual Comment RemoveComment(
             int mediaId, int commentId)
         {
             var request = new RestRequest($"v1/media/{mediaId}/comments/{commentId}", Method.DELETE);
             request.Parameters.Clear();
 
-
             return Execute<Comment>(request);
+        }
+
+
+        /// <summary>
+        /// Upload a new Media to QBank.
+        ///
+        /// <param name="file">The file to upload</param>
+        /// <param name="name">The filename</param>
+        /// <param name="categoryId">Category to place the file in</param>
+        /// </summary>
+        public MediaResponse UploadFile(FileStream file, string name, int categoryId)
+        {
+            var currentChunk = 0;
+            var totalChunks = (int) file.Length / ChunkSize + 1;
+            var fileId = Guid.NewGuid().ToString();
+            var bytesToRead = (int) Math.Min(ChunkSize, file.Length);
+            var bytesLeftToRead = file.Length;
+            var chunkData = new byte[bytesToRead];
+            int bytesRead;
+
+            while ((bytesRead = file.Read(chunkData, 0, bytesToRead)) > 0)
+            {
+                var request = new RestRequest($"v1/media", Method.POST);
+                request.Parameters.Clear();
+                request.AddHeader("Content-Type", "multipart/form-data");
+                request.AddHeader("Accept", "application/json");
+                request.AddParameter("categoryId", categoryId);
+                request.AddParameter("name", name);
+                request.AddParameter("fileId", fileId);
+                request.AddParameter("chunk", currentChunk);
+                request.AddParameter("chunks", totalChunks);
+                request.AddFile("file", chunkData, file.Name);
+
+                if (currentChunk == totalChunks - 1)
+                {
+                    return Execute<MediaResponse>(request);
+                }
+                Execute<object>(request);
+
+                bytesLeftToRead -= bytesRead;
+                bytesToRead = (int) Math.Min(ChunkSize, bytesLeftToRead);
+                chunkData = new byte[bytesToRead];
+                currentChunk++;
+            }
+
+            throw new Exception();
+        }
+
+        /// <summary>
+        /// Upload a new version of an existing Media in QBank.
+        ///
+        /// <param name="id">Id of existing media to update</param>
+        /// <param name="file">The file to upload</param>
+        /// <param name="name">The filename</param>
+        /// <param name="revisionComment">A comment to why this version was uploaded</param>
+        /// </summary>
+        public MediaResponse UploadNewVersion(int id, FileStream file, string name, string revisionComment)
+        {
+            var currentChunk = 0;
+            var totalChunks = (int) file.Length / ChunkSize + 1;
+            var fileId = Guid.NewGuid().ToString();
+            var bytesToRead = (int) Math.Min(ChunkSize, file.Length);
+            var bytesLeftToRead = file.Length;
+            var chunkData = new byte[bytesToRead];
+            int bytesRead;
+
+            while ((bytesRead = file.Read(chunkData, 0, bytesToRead)) > 0)
+            {
+                var request = new RestRequest($"v1/media/{id}", Method.POST);
+                request.Parameters.Clear();
+                request.AddHeader("Content-Type", "multipart/form-data");
+                request.AddHeader("Accept", "application/json");
+                request.AddParameter("name", name);
+                request.AddParameter("fileId", fileId);
+                request.AddParameter("chunk", currentChunk);
+                request.AddParameter("chunks", totalChunks);
+                request.AddParameter("revisionComment", revisionComment);
+                request.AddFile("file", chunkData, file.Name);
+
+                if (currentChunk == totalChunks - 1)
+                {
+                    return Execute<MediaResponse>(request);
+                }
+                Execute<object>(request);
+
+                bytesLeftToRead -= bytesRead;
+                bytesToRead = (int) Math.Min(ChunkSize, bytesLeftToRead);
+                chunkData = new byte[bytesToRead];
+                currentChunk++;
+            }
+
+            throw new Exception();
         }
     }
 }

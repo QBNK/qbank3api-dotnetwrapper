@@ -28,7 +28,7 @@ namespace QBankApi.Controller
         /// <param name="deploymentSiteIds">Comma separated string of deploymentSiteIds we should fetch mediaIds for.</param>
         /// <param name="ignoreGrouping">Whether to include grouped media or not.</param>
         /// </summary>
-        public List<FilterItem> Categories(
+        public virtual List<FilterItem> Categories(
             string categoryIds, string deploymentSiteIds = null, bool ignoreGrouping = false,
             CachePolicy cachePolicy = null)
         {
@@ -36,7 +36,6 @@ namespace QBankApi.Controller
             request.Parameters.Clear();
             request.AddParameter("deploymentSiteIds", deploymentSiteIds, ParameterType.QueryString);
             request.AddParameter("ignoreGrouping", ignoreGrouping, ParameterType.QueryString);
-
 
             return Execute<List<FilterItem>>(request, cachePolicy);
         }
@@ -50,7 +49,7 @@ namespace QBankApi.Controller
         /// <param name="deploymentSiteIds">Comma separated string of deploymentSiteIds we should fetch mediaIds for.</param>
         /// <param name="ignoreGrouping">Whether to include grouped media or not.</param>
         /// </summary>
-        public List<FilterItem> Folder(
+        public virtual List<FilterItem> Folder(
             int parentFolderId, string categoryIds = null, string deploymentSiteIds = null, bool ignoreGrouping = false,
             CachePolicy cachePolicy = null)
         {
@@ -59,7 +58,6 @@ namespace QBankApi.Controller
             request.AddParameter("categoryIds", categoryIds, ParameterType.QueryString);
             request.AddParameter("deploymentSiteIds", deploymentSiteIds, ParameterType.QueryString);
             request.AddParameter("ignoreGrouping", ignoreGrouping, ParameterType.QueryString);
-
 
             return Execute<List<FilterItem>>(request, cachePolicy);
         }
@@ -73,7 +71,7 @@ namespace QBankApi.Controller
         /// <param name="mode">The method (AND|OR) to filter words by.</param>
         /// <param name="ignoreGrouping">Whether to include grouped media or not.</param>
         /// </summary>
-        public List<FilterItem> Freetext(
+        public virtual List<FilterItem> Freetext(
             string freetext, string deploymentSiteIds = null, string mode = "OR", bool ignoreGrouping = false,
             CachePolicy cachePolicy = null)
         {
@@ -82,7 +80,6 @@ namespace QBankApi.Controller
             request.AddParameter("deploymentSiteIds", deploymentSiteIds, ParameterType.QueryString);
             request.AddParameter("mode", mode, ParameterType.QueryString);
             request.AddParameter("ignoreGrouping", ignoreGrouping, ParameterType.QueryString);
-
 
             return Execute<List<FilterItem>>(request, cachePolicy);
         }
@@ -98,7 +95,7 @@ namespace QBankApi.Controller
         /// <param name="isHierarchical">Whether to include grouped media or not.</param>
         /// <param name="ignoreGrouping"></param>
         /// </summary>
-        public List<FilterItem> Property(
+        public virtual List<FilterItem> Property(
             string systemName, bool preloadNames = false, string categoryIds = null, string deploymentSiteIds = null,
             bool isHierarchical = false, bool ignoreGrouping = false, CachePolicy cachePolicy = null)
         {
@@ -109,7 +106,6 @@ namespace QBankApi.Controller
             request.AddParameter("deploymentSiteIds", deploymentSiteIds, ParameterType.QueryString);
             request.AddParameter("isHierarchical", isHierarchical, ParameterType.QueryString);
             request.AddParameter("ignoreGrouping", ignoreGrouping, ParameterType.QueryString);
-
 
             return Execute<List<FilterItem>>(request, cachePolicy);
         }

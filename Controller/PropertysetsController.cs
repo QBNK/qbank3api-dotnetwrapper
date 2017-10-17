@@ -23,12 +23,11 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists all PropertySets
         /// </summary>
-        public List<PropertySet> ListPropertySets(
+        public virtual List<PropertySet> ListPropertySets(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/propertysets", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<PropertySet>>(request, cachePolicy);
         }
@@ -36,12 +35,11 @@ namespace QBankApi.Controller
         /// <summary>
         /// Lists all PropertyTypes in QBank
         /// </summary>
-        public List<PropertyType> ListPropertyTypes(
+        public virtual List<PropertyType> ListPropertyTypes(
             CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/propertysets/propertytypes", Method.GET);
             request.Parameters.Clear();
-
 
             return Execute<List<PropertyType>>(request, cachePolicy);
         }

@@ -69,7 +69,10 @@ namespace QBankApi.Model
             {
                 var typedValue = GetValue<T>();
                 if (typedValue != null)
-                    list = new List<T>() {typedValue};
+                    list = new List<T>()
+                    {
+                        typedValue
+                    };
             }
             else
             {

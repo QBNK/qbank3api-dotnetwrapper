@@ -34,7 +34,10 @@ namespace QBankApi.Controller
         {
             if (!string.IsNullOrWhiteSpace(apiAddress))
             {
-                Client = new RestClient(new Uri(apiAddress)) {Authenticator = authenticator};
+                Client = new RestClient(new Uri(apiAddress))
+                {
+                    Authenticator = authenticator
+                };
             }
         }
 
