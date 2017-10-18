@@ -452,7 +452,7 @@ namespace QBankApi.Controller
 
             while ((bytesRead = file.Read(chunkData, 0, bytesToRead)) > 0)
             {
-                var request = new RestRequest($"v1/media/{id}", Method.POST);
+                var request = new RestRequest($"v1/media/{id}/version", Method.POST);
                 request.Parameters.Clear();
                 request.AddHeader("Content-Type", "multipart/form-data");
                 request.AddHeader("Accept", "application/json");
