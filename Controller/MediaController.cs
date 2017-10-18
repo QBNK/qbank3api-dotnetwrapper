@@ -394,7 +394,7 @@ namespace QBankApi.Controller
         /// <param name="name">The filename</param>
         /// <param name="categoryId">Category to place the file in</param>
         /// </summary>
-        public MediaResponse UploadFile(FileStream file, string name, int categoryId)
+        public virtual MediaResponse UploadFile(FileStream file, string name, int categoryId)
         {
             var currentChunk = 0;
             var totalChunks = (int) file.Length / ChunkSize + 1;
@@ -440,7 +440,7 @@ namespace QBankApi.Controller
         /// <param name="name">The filename</param>
         /// <param name="revisionComment">A comment to why this version was uploaded</param>
         /// </summary>
-        public MediaResponse UploadNewVersion(int id, FileStream file, string name, string revisionComment)
+        public virtual MediaResponse UploadNewVersion(int id, FileStream file, string name, string revisionComment)
         {
             var currentChunk = 0;
             var totalChunks = (int) file.Length / ChunkSize + 1;
