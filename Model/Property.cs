@@ -14,6 +14,6 @@ namespace QBankApi.Model
         /// <summary>
         /// The value we filter by
         /// </summary>
-        public string Value { get; set; }
+        public object Value { get; set; }
     }
 }

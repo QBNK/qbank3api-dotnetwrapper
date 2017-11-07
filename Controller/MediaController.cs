@@ -61,6 +61,7 @@ namespace QBankApi.Controller
         {
             var request = new RestRequest($"v1/media/{id}/asset");
             request.AddParameter("template", template, ParameterType.QueryString);
+
             request.ResponseWriter = (responseStream) => responseStream.CopyTo(writer);
             Client.DownloadData(request);
         }
@@ -68,14 +69,12 @@ namespace QBankApi.Controller
         /// <summary>
         /// Fetches all DeployedFiles a Media has.
         /// <param name="id">The Media identifier..</param>
-        /// <param name="media">[DEPRECATED] Internal use only.</param>
         /// </summary>
         public virtual List<DeploymentFile> ListDeployedFiles(
-            int id, Media media = null, CachePolicy cachePolicy = null)
+            int id, CachePolicy cachePolicy = null)
         {
             var request = new RestRequest($"v1/media/{id}/deployment/files", Method.GET);
             request.Parameters.Clear();
-            request.AddParameter("media", media, ParameterType.QueryString);
 
             return Execute<List<DeploymentFile>>(request, cachePolicy);
         }
@@ -109,6 +108,7 @@ namespace QBankApi.Controller
             var request = new RestRequest($"v1/media/{id}/download");
             request.AddParameter("template", template, ParameterType.QueryString);
             request.AddParameter("templateType", templateType, ParameterType.QueryString);
+
             request.ResponseWriter = (responseStream) => responseStream.CopyTo(writer);
             Client.DownloadData(request);
         }
@@ -224,9 +224,11 @@ namespace QBankApi.Controller
             var request = new RestRequest($"v1/media/download");
             request.AddParameter("ids", ids, ParameterType.QueryString);
             request.AddParameter("template", template, ParameterType.QueryString);
+
             request.ResponseWriter = (responseStream) => responseStream.CopyTo(writer);
             Client.DownloadData(request);
         }
+
 
         /// <summary>
         /// Update a specific Media.
@@ -342,7 +344,7 @@ namespace QBankApi.Controller
         /// <param name="id">The Media identifier.</param>
         /// <param name="properties">An array of QBNK\QBank\Api\v1\Model\Property values.</param>
         /// </summary>
-        public virtual Dictionary<string, object> UpdateProperties(
+        public virtual MediaResponse UpdateProperties(
             int id, List<Property> properties)
         {
             var request = new RestRequest($"v1/media/{id}/properties", Method.PUT);
@@ -350,7 +352,7 @@ namespace QBankApi.Controller
             request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(properties),
                 ParameterType.RequestBody);
 
-            return Execute<Dictionary<string, object>>(request);
+            return Execute<MediaResponse>(request);
         }
 
         /// <summary>
@@ -394,7 +396,7 @@ namespace QBankApi.Controller
         /// <param name="name">The filename</param>
         /// <param name="categoryId">Category to place the file in</param>
         /// </summary>
-        public MediaResponse UploadFile(FileStream file, string name, int categoryId)
+        public virtual MediaResponse UploadFile(FileStream file, string name, int categoryId)
         {
             var currentChunk = 0;
             var totalChunks = (int) file.Length / ChunkSize + 1;
@@ -440,7 +442,7 @@ namespace QBankApi.Controller
         /// <param name="name">The filename</param>
         /// <param name="revisionComment">A comment to why this version was uploaded</param>
         /// </summary>
-        public MediaResponse UploadNewVersion(int id, FileStream file, string name, string revisionComment)
+        public virtual MediaResponse UploadNewVersion(int id, FileStream file, string name, string revisionComment)
         {
             var currentChunk = 0;
             var totalChunks = (int) file.Length / ChunkSize + 1;

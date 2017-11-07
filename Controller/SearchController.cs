@@ -21,7 +21,7 @@ namespace QBankApi.Controller
         }
 
         /// <summary>
-        /// routes to <mark>QBNK\QBank\Api\v1\Search::metadata();</mark>
+        ///
         /// </summary>
         public virtual object Metadata(
             CachePolicy cachePolicy = null)

@@ -110,7 +110,7 @@ namespace QBankApi.Controller
         /// <param name="id">DeploymentSite to deploy to.</param>
         /// <param name="mediaIds">An array of int values.</param>
         /// </summary>
-        public virtual Dictionary<string, object> AddMediaToDeploymentSite(
+        public virtual object AddMediaToDeploymentSite(
             int id, List<int> mediaIds)
         {
             var request = new RestRequest($"v1/deployment/{id}/media", Method.POST);
@@ -118,7 +118,7 @@ namespace QBankApi.Controller
             request.AddParameter("application/json", new RestSharpJsonNetSerializer().Serialize(mediaIds),
                 ParameterType.RequestBody);
 
-            return Execute<Dictionary<string, object>>(request);
+            return Execute<object>(request);
         }
 
         /// <summary>
