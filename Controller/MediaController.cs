@@ -398,15 +398,33 @@ namespace QBankApi.Controller
         /// </summary>
         public virtual MediaResponse UploadFile(FileStream file, string name, int categoryId)
         {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                file.CopyTo(ms);
+                ms.Position = 0;
+                return UploadFile(ms, name, categoryId);
+            }
+        }
+
+        /// <summary>
+        /// Upload a new Media to QBank.
+        /// 
+        /// </summary>
+        /// <param name="stream">The stream to upload from</param>
+        /// <param name="name">The filename</param>
+        /// <param name="categoryId">Category to place the file in</param>
+        /// <returns></returns>
+        public MediaResponse UploadFile(Stream stream, string name, int categoryId)
+        {
             var currentChunk = 0;
-            var totalChunks = (int) file.Length / ChunkSize + 1;
+            var totalChunks = (int)stream.Length / ChunkSize + 1;
             var fileId = Guid.NewGuid().ToString();
-            var bytesToRead = (int) Math.Min(ChunkSize, file.Length);
-            var bytesLeftToRead = file.Length;
+            var bytesToRead = (int)Math.Min(ChunkSize, stream.Length);
+            var bytesLeftToRead = stream.Length;
             var chunkData = new byte[bytesToRead];
             int bytesRead;
 
-            while ((bytesRead = file.Read(chunkData, 0, bytesToRead)) > 0)
+            while ((bytesRead = stream.Read(chunkData, 0, bytesToRead)) > 0)
             {
                 var request = new RestRequest($"v1/media", Method.POST);
                 request.Parameters.Clear();
@@ -417,7 +435,7 @@ namespace QBankApi.Controller
                 request.AddParameter("fileId", fileId);
                 request.AddParameter("chunk", currentChunk);
                 request.AddParameter("chunks", totalChunks);
-                request.AddFile("file", chunkData, file.Name);
+                request.AddFile("file", chunkData, name);
 
                 if (currentChunk == totalChunks - 1)
                 {
@@ -426,7 +444,7 @@ namespace QBankApi.Controller
                 Execute<object>(request);
 
                 bytesLeftToRead -= bytesRead;
-                bytesToRead = (int) Math.Min(ChunkSize, bytesLeftToRead);
+                bytesToRead = (int)Math.Min(ChunkSize, bytesLeftToRead);
                 chunkData = new byte[bytesToRead];
                 currentChunk++;
             }
@@ -442,19 +460,38 @@ namespace QBankApi.Controller
         /// <param name="name">The filename</param>
         /// <param name="revisionComment">A comment to why this version was uploaded</param>
         /// </summary>
-        public virtual MediaResponse UploadNewVersion(int id, FileStream file, string name, string revisionComment)
+        public MediaResponse UploadNewVersion(int id, FileStream file, string name, string revisionComment)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                file.CopyTo(ms);
+                ms.Position = 0;
+                return UploadNewVersion(id, ms, name, revisionComment);
+            }
+        }
+
+        /// <summary>
+        /// Upload a new version of an existing Media in QBank.
+        /// 
+        /// </summary>
+        /// <param name="id">Id of existing media to update</param>
+        /// <param name="stream">The stream to upload from</param>
+        /// <param name="name">The filename</param>
+        /// <param name="revisionComment">A comment to why this version was uploaded</param>
+        /// <returns></returns>
+        public MediaResponse UploadNewVersion(int id, Stream stream, string name, string revisionComment)
         {
             var currentChunk = 0;
-            var totalChunks = (int) file.Length / ChunkSize + 1;
+            var totalChunks = (int)stream.Length / ChunkSize + 1;
             var fileId = Guid.NewGuid().ToString();
-            var bytesToRead = (int) Math.Min(ChunkSize, file.Length);
-            var bytesLeftToRead = file.Length;
+            var bytesToRead = (int)Math.Min(ChunkSize, stream.Length);
+            var bytesLeftToRead = stream.Length;
             var chunkData = new byte[bytesToRead];
             int bytesRead;
 
-            while ((bytesRead = file.Read(chunkData, 0, bytesToRead)) > 0)
+            while ((bytesRead = stream.Read(chunkData, 0, bytesToRead)) > 0)
             {
-                var request = new RestRequest($"v1/media/{id}/version", Method.POST);
+                var request = new RestRequest($"v1/media/{id}", Method.POST);
                 request.Parameters.Clear();
                 request.AddHeader("Content-Type", "multipart/form-data");
                 request.AddHeader("Accept", "application/json");
@@ -463,7 +500,7 @@ namespace QBankApi.Controller
                 request.AddParameter("chunk", currentChunk);
                 request.AddParameter("chunks", totalChunks);
                 request.AddParameter("revisionComment", revisionComment);
-                request.AddFile("file", chunkData, file.Name);
+                request.AddFile("file", chunkData, name);
 
                 if (currentChunk == totalChunks - 1)
                 {
@@ -472,7 +509,7 @@ namespace QBankApi.Controller
                 Execute<object>(request);
 
                 bytesLeftToRead -= bytesRead;
-                bytesToRead = (int) Math.Min(ChunkSize, bytesLeftToRead);
+                bytesToRead = (int)Math.Min(ChunkSize, bytesLeftToRead);
                 chunkData = new byte[bytesToRead];
                 currentChunk++;
             }
